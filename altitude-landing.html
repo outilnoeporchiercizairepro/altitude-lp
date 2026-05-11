@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ALTITUDE — Récupère 14h/semaine en 30 jours</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white:   #ffffff;
+      --off:     #f7f7fb;
+      --off2:    #f0f0f8;
+      --text:    #1a1a2e;
+      --muted:   #6b6b8a;
+      --light-border: rgba(0,0,0,0.07);
+      --blue:    #4455ff;
+      --purple:  #cc44ee;
+      --grad:    linear-gradient(135deg, #4455ff 0%, #9933dd 50%, #cc44ee 100%);
+      --grad2:   linear-gradient(90deg, #4455ff 0%, #cc44ee 100%);
+      --radius:  16px;
+      --shadow:  0 4px 24px rgba(60,40,120,0.08);
+      --shadow-md: 0 8px 40px rgba(60,40,120,0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.65;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .grad-text {
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ──────────────────────────────────────────
+       BUTTONS
+    ────────────────────────────────────────── */
+    .btn {
+      display: inline-block;
+      background: var(--grad);
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 17px 44px;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 6px 28px rgba(100,60,220,0.3);
+      transition: transform .2s, box-shadow .2s, opacity .2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 36px rgba(150,60,240,0.4);
+      opacity: .92;
+    }
+
+    /* ──────────────────────────────────────────
+       1. NAVBAR
+    ────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 60px;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--light-border);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-orbital { width: 36px; height: 26px; }
+
+    .nav-logo-text {
+      font-size: 19px;
+      font-weight: 900;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      background: var(--grad2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: color .2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    /* ──────────────────────────────────────────
+       2. HERO
+    ────────────────────────────────────────── */
+    .hero {
+      background: var(--off);
+      text-align: center;
+      padding: 100px 40px 90px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* subtle gradient glow top-center */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -60px; left: 50%;
+      transform: translateX(-50%);
+      width: 700px; height: 400px;
+      background: radial-gradient(ellipse, rgba(100,60,240,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(100,60,240,0.07);
+      border: 1px solid rgba(100,60,240,0.18);
+      color: #7744cc;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 20px;
+      border-radius: 100px;
+      margin-bottom: 32px;
+    }
+
+    .hero-orbital {
+      display: block;
+      margin: 0 auto 28px;
+      width: 150px;
+      height: 100px;
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 5.5vw, 68px);
+      font-weight: 900;
+      line-height: 1.08;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text);
+      margin-bottom: 20px;
+      max-width: 880px;
+      margin-inline: auto;
+    }
+
+    .hero h1 .highlight {
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 19px;
+      font-weight: 500;
+      color: var(--muted);
+      margin-bottom: 40px;
+      max-width: 580px;
+      margin-inline: auto;
+    }
+
+    .hero-sub strong { color: var(--text); font-weight: 700; }
+
+    .hero-pains {
+      list-style: none;
+      display: inline-flex;
+      flex-direction: column;
+      gap: 12px;
+      text-align: left;
+      margin-bottom: 52px;
+      background: var(--white);
+      border: 1px solid var(--light-border);
+      border-radius: var(--radius);
+      padding: 28px 40px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-pains li { font-size: 15px; color: var(--muted); }
+    .hero-pains li strong { color: var(--text); }
+
+    /* ──────────────────────────────────────────
+       SECTION HELPERS
+    ────────────────────────────────────────── */
+    .section-white  { background: var(--white);  padding: 90px 40px; }
+    .section-off    { background: var(--off);    padding: 90px 40px; }
+    .section-off2   { background: var(--off2);   padding: 90px 40px; }
+
+    .section-title {
+      font-size: 34px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .section-sub-text {
+      font-size: 16px;
+      color: var(--muted);
+      margin-bottom: 52px;
+      max-width: 540px;
+      margin-inline: auto;
+      text-align: center;
+    }
+
+    /* ──────────────────────────────────────────
+       3. POURQUOI DIFFÉRENT
+    ────────────────────────────────────────── */
+    .vs-table {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 40px;
+    }
+    .vs-column {
+      background: var(--white);
+      border: 1px solid var(--light-border);
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+    .vs-bad { background: var(--off); opacity: 0.9; }
+    .vs-good {
+      border: 1px solid rgba(100,60,240,0.15);
+      background: linear-gradient(to bottom, var(--white), rgba(100,60,240,0.02));
+      box-shadow: var(--shadow-md);
+    }
+    .vs-header {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+    .vs-bad .vs-header { color: var(--muted); }
+    .vs-good .vs-header { color: #6633cc; }
+    .vs-item { display: flex; flex-direction: column; gap: 8px; }
+    .vs-item strong { font-size: 18px; color: var(--text); }
+    .vs-item p { font-size: 14px; color: var(--muted); line-height: 1.6; text-align: justify; }
+    .vs-good .vs-item strong {
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ──────────────────────────────────────────
+       4. MÉTHODE M.A.R.R.E.
+    ────────────────────────────────────────── */
+    .marre-row {
+      max-width: 980px;
+      margin: 0 auto 60px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+    }
+
+    .marre-step {
+      background: var(--white);
+      border: 1px solid var(--light-border);
+      border-radius: 16px;
+      padding: 28px 14px 22px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      transition: transform .2s, box-shadow .2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .marre-step::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--grad2);
+    }
+
+    .marre-step:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .marre-letter {
+      font-size: 40px;
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 8px;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .marre-word { font-size: 11px; font-weight: 700; color: var(--text); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px; }
+    .marre-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+    .program-grid {
+      max-width: 820px;
+      margin: 0 auto 52px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      text-align: left;
+    }
+
+    .program-item {
+      background: var(--off);
+      border: 1px solid var(--light-border);
+      border-left: 3px solid;
+      border-image: var(--grad2) 1;
+      border-radius: 10px;
+      padding: 18px 22px;
+    }
+
+    .program-item h3 { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 5px; }
+    .program-item p  { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+    /* ──────────────────────────────────────────
+       5. FORMATEUR
+    ────────────────────────────────────────── */
+    .trainer-card {
+      max-width: 620px;
+      margin: 0 auto;
+      background: var(--white);
+      border: 1px solid var(--light-border);
+      border-radius: 22px;
+      padding: 48px 52px;
+      text-align: center;
+      box-shadow: var(--shadow-md);
+    }
+
+    .trainer-avatar {
+      width: 80px; height: 80px;
+      background: var(--grad);
+      border-radius: 50%;
+      margin: 0 auto 18px;
+      display: block;
+      object-fit: cover;
+      border: 2px solid var(--white);
+      box-shadow: 0 4px 20px rgba(100,60,220,0.3);
+    }
+
+    .trainer-card h2 { font-size: 22px; font-weight: 800; color: var(--text); margin-bottom: 20px; }
+
+    .trainer-bullets { list-style: none; text-align: left; display: flex; flex-direction: column; gap: 10px; margin-bottom: 22px; }
+
+    .trainer-bullets li { font-size: 14px; color: var(--muted); display: flex; align-items: flex-start; gap: 10px; }
+
+    .trainer-bullets li::before {
+      content: '▸';
+      font-size: 14px; flex-shrink: 0; margin-top: 2px;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .trainer-quote {
+      font-style: italic;
+      font-size: 14px;
+      color: var(--muted);
+      border-left: 2px solid;
+      border-image: var(--grad2) 1;
+      padding-left: 16px;
+      text-align: left;
+      margin-top: 18px;
+      line-height: 1.6;
+    }
+
+    /* ──────────────────────────────────────────
+       6. PAS FAIT POUR TOI
+    ────────────────────────────────────────── */
+    .notfor-grid {
+      max-width: 720px;
+      margin: 0 auto 32px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      text-align: left;
+    }
+
+    .notfor-item {
+      background: rgba(220,40,40,0.04);
+      border: 1px solid rgba(220,40,40,0.1);
+      border-radius: 12px;
+      padding: 14px 18px;
+      font-size: 14px;
+      color: var(--muted);
+      display: flex; align-items: flex-start; gap: 8px;
+    }
+
+    .bridge {
+      max-width: 600px;
+      margin: 0 auto;
+      background: rgba(100,60,240,0.05);
+      border: 1px solid rgba(100,60,240,0.15);
+      border-radius: var(--radius);
+      padding: 22px 28px;
+      font-size: 15px;
+      color: var(--text);
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .bridge strong { color: #6633cc; }
+
+    /* ──────────────────────────────────────────
+       7. RÉSULTATS
+    ────────────────────────────────────────── */
+    .results-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 52px;
+      align-items: center;
+    }
+
+    .results-visual {
+      background: var(--white);
+      border: 1px solid var(--light-border);
+      border-radius: 20px;
+      padding: 32px 28px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .results-visual h3 {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .results-stat { display: flex; flex-direction: column; gap: 12px; }
+
+    .stat-row {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 10px;
+      background: var(--off);
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+
+    .stat-before { font-size: 12px; color: rgba(0,0,0,0.3); text-decoration: line-through; }
+
+    .stat-arrow {
+      font-size: 15px;
+      font-weight: 800;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .stat-after { font-size: 13px; font-weight: 700; color: var(--text); text-align: right; }
+
+    .results-content h2 { font-size: 26px; font-weight: 800; color: var(--text); margin-bottom: 24px; }
+
+    .results-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
+
+    .results-list li { display: flex; align-items: flex-start; gap: 14px; font-size: 15px; color: var(--muted); }
+    .results-list li strong { color: var(--text); }
+
+    .results-list li .bullet {
+      width: 28px; height: 28px; min-width: 28px;
+      background: var(--grad);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 800;
+      color: var(--white);
+      box-shadow: 0 2px 12px rgba(100,60,220,0.3);
+    }
+
+    /* ──────────────────────────────────────────
+       8. BONUS
+    ────────────────────────────────────────── */
+    .bonus-grid {
+      max-width: 820px;
+      margin: 0 auto 52px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .bonus-card {
+      background: var(--white);
+      border: 1px solid var(--light-border);
+      border-radius: 18px;
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .bonus-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+
+    .bonus-icon { font-size: 36px; margin-bottom: 12px; }
+    .bonus-card h3 { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 7px; }
+    .bonus-card p  { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+    /* ──────────────────────────────────────────
+       9. CTA FINALE
+    ────────────────────────────────────────── */
+    .section-cta {
+      background: var(--off);
+      padding: 100px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section-cta::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px; height: 400px;
+      background: radial-gradient(ellipse, rgba(100,60,240,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .section-cta h2 {
+      font-size: 36px;
+      font-weight: 900;
+      color: var(--text);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
+
+    .cta-sub-line {
+      font-size: 17px;
+      color: var(--muted);
+      margin-bottom: 44px;
+    }
+
+    .choices {
+      max-width: 600px;
+      margin: 0 auto 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      text-align: left;
+    }
+
+    .choice-bad {
+      background: var(--white);
+      border: 1px solid var(--light-border);
+      border-radius: 12px;
+      padding: 15px 20px;
+      font-size: 14px;
+      color: rgba(0,0,0,0.35);
+    }
+
+    .choice-good {
+      background: rgba(100,60,240,0.06);
+      border: 1px solid rgba(100,60,240,0.18);
+      border-radius: 12px;
+      padding: 15px 20px;
+      font-size: 15px;
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .choice-good strong { color: #6633cc; }
+
+    .cta-nudge {
+      font-size: 15px;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    .cta-nudge strong { color: var(--text); }
+
+    /* ──────────────────────────────────────────
+       10. FOOTER
+    ────────────────────────────────────────── */
+    footer {
+      background: var(--white);
+      border-top: 1px solid var(--light-border);
+      padding: 48px 40px 30px;
+    }
+
+    .footer-inner { max-width: 800px; margin: 0 auto; }
+
+    .footer-legal {
+      background: var(--off);
+      border: 1px solid var(--light-border);
+      border-radius: 12px;
+      padding: 22px 26px;
+      font-size: 11px;
+      line-height: 1.75;
+      color: rgba(0,0,0,0.3);
+      margin-bottom: 32px;
+    }
+
+    .footer-legal strong {
+      color: rgba(0,0,0,0.5);
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      border-top: 1px solid var(--light-border);
+      padding-top: 22px;
+    }
+
+    .footer-logo {
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      background: var(--grad2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .footer-links { display: flex; gap: 22px; list-style: none; font-size: 11px; }
+    .footer-links a { color: var(--muted); transition: color .2s; }
+    .footer-links a:hover { color: var(--text); }
+
+    .footer-copy { font-size: 11px; color: rgba(0,0,0,0.2); text-align: center; margin-top: 16px; }
+
+    /* ──────────────────────────────────────────
+       RESPONSIVE
+    ────────────────────────────────────────── */
+    @media (max-width: 900px) { .marre-row { grid-template-columns: repeat(3,1fr); } }
+
+    @media (max-width: 768px) {
+      nav { padding: 14px 20px; }
+      .hero { padding: 70px 22px 56px; }
+      .hero-pains { padding: 20px 22px; width: 100%; }
+      .vs-table, .program-grid, .notfor-grid, .results-inner, .bonus-grid { grid-template-columns: 1fr; }
+      .marre-row { grid-template-columns: 1fr 1fr; }
+      .section-white, .section-off, .section-off2 { padding: 60px 22px; }
+      .section-cta { padding: 70px 22px; }
+      .why-card, .trainer-card { padding: 26px 22px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════
+     1. NAVBAR
+══════════════════════════════════ -->
+<nav>
+  <div class="nav-logo">
+    <svg class="nav-orbital" viewBox="0 0 60 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="ng" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#4455ff"/>
+          <stop offset="100%" stop-color="#cc44ee"/>
+        </linearGradient>
+      </defs>
+      <ellipse cx="30" cy="21" rx="28" ry="12" stroke="url(#ng)" stroke-width="3" fill="none"/>
+      <ellipse cx="30" cy="21" rx="28" ry="12" stroke="url(#ng)" stroke-width="2" fill="none" transform="rotate(20 30 21)" opacity="0.5"/>
+    </svg>
+    <span class="nav-logo-text">ALTITUDE</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#">Accueil</a></li>
+    <li><a href="#programme">Programme</a></li>
+    <li><a href="#cta">Rejoindre</a></li>
+    <li><a href="#">CGV</a></li>
+  </ul>
+</nav>
+
+<!-- ══════════════════════════════════
+     2. HERO
+══════════════════════════════════ -->
+<section class="hero">
+  <svg class="hero-orbital" viewBox="0 0 160 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="hg" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#4455ff"/>
+        <stop offset="50%" stop-color="#9933dd"/>
+        <stop offset="100%" stop-color="#cc44ee"/>
+      </linearGradient>
+    </defs>
+    <ellipse cx="80" cy="55" rx="75" ry="30" stroke="url(#hg)" stroke-width="4" fill="none"/>
+    <ellipse cx="80" cy="55" rx="75" ry="30" stroke="url(#hg)" stroke-width="2.5" fill="none" transform="rotate(25 80 55)" opacity="0.5"/>
+  </svg>
+
+
+
+  <h1>Récupère <span class="highlight">14h / semaine</span><br>en 30 jours</h1>
+
+  <p class="hero-sub">
+    <strong>ALTITUDE</strong> — La méthode pour faire de Claude un vrai collaborateur.<br>Pas un outil de plus.
+  </p>
+
+  <ul class="hero-pains">
+    <li>👉 Tu gères tout seul — stratégie ET opérationnel — et <strong>ton énergie s'y épuise</strong> ?</li>
+    <li>👉 Tu utilises l'IA depuis des mois mais <strong>rien n'a vraiment changé</strong> dans ton quotidien ?</li>
+    <li>👉 Tu veux une méthode <strong>concrète, immédiatement applicable</strong> — pas un cours de plus sur les prompts ?</li>
+  </ul>
+
+  <a href="#cta" class="btn">Je veux récupérer mes 14h →</a>
+</section>
+
+<!-- ══════════════════════════════════
+     3. POURQUOI DIFFÉRENT
+══════════════════════════════════ -->
+<section class="section-white">
+  <div class="vs-container" style="max-width:1040px; margin:0 auto;">
+    <h2 class="section-title">Pourquoi <span class="grad-text">Altitude</span> change tout</h2>
+    <p class="section-sub-text">Une différence d'approche radicale entre l'usage passif et la stratégie active.</p>
+
+    <div class="vs-table">
+      <div class="vs-column vs-bad">
+        <div class="vs-header">SANS ALTITUDE ❌</div>
+        <div class="vs-item">
+          <strong>Usage ponctuel</strong>
+          <p>Ouvrir Claude ou ChatGPT, poser une question, fermer l'onglet — rien ne change.</p>
+        </div>
+        <div class="vs-item">
+          <strong>Prompts isolés</strong>
+          <p>Apprendre des "hacks" sans logique d'intégration à ton activité réelle.</p>
+        </div>
+        <div class="vs-item">
+          <strong>Déception</strong>
+          <p>Conclure que "l'IA c'est pas si ouf" car elle n'est pas activée au bon niveau.</p>
+        </div>
+      </div>
+
+      <div class="vs-column vs-good">
+        <div class="vs-header">AVEC ALTITUDE ✅</div>
+        <div class="vs-item">
+          <strong>Intégration profonde</strong>
+          <p>Une méthode en 5 étapes pour faire de Claude un vrai collaborateur interne.</p>
+        </div>
+        <div class="vs-item">
+          <strong>Contexte métier</strong>
+          <p>Claude connaît ton business, ton style et tes priorités stratégiques.</p>
+        </div>
+        <div class="vs-item">
+          <strong>Transformation</strong>
+          <p>30 jours pour passer d'un outil gadget à une hausse massive de productivité.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="btn-center" style="margin-top: 48px;">
+      <a href="#cta" class="btn">Je veux cette transformation →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     4. MÉTHODE M.A.R.R.E.
+══════════════════════════════════ -->
+<section class="section-off" id="programme">
+  <h2 class="section-title">La méthode <span class="grad-text">M.A.R.R.E.</span></h2>
+  <p class="section-sub-text">Le framework propriétaire au cœur d'Altitude — appliqué à ton activité réelle, semaine par semaine.</p>
+
+  <div class="marre-row">
+    <div class="marre-step">
+      <div class="marre-letter">M</div>
+      <div class="marre-word">Micro audit</div>
+      <div class="marre-desc">Cartographier ton temps tâche par tâche pour voir exactement où il part.</div>
+    </div>
+    <div class="marre-step">
+      <div class="marre-letter">A</div>
+      <div class="marre-word">Analyse</div>
+      <div class="marre-desc">Classer chaque tâche selon son potentiel de délégation à Claude.</div>
+    </div>
+    <div class="marre-step">
+      <div class="marre-letter">R</div>
+      <div class="marre-word">Réduction</div>
+      <div class="marre-desc">Commencer à déléguer concrètement — et mesurer ce que ça libère.</div>
+    </div>
+    <div class="marre-step">
+      <div class="marre-letter">R</div>
+      <div class="marre-word">Robotisation</div>
+      <div class="marre-desc">Construire des systèmes récurrents — Claude comme collaborateur permanent.</div>
+    </div>
+    <div class="marre-step">
+      <div class="marre-letter">E</div>
+      <div class="marre-word">Évaluation</div>
+      <div class="marre-desc">Mesurer, ajuster, ancrer — pour que le changement soit durable.</div>
+    </div>
+  </div>
+
+  <h2 class="section-title" style="margin-bottom:10px;">Ce qui est inclus</h2>
+  <p class="section-sub-text">30 jours d'intégration progressive dans ton environnement Claude complet.</p>
+
+  <div class="program-grid">
+    <div class="program-item">
+      <h3>🧠 L'environnement complet</h3>
+      <p>Mémoire, projets, skills, connecteurs, automatisations — pas juste la version basique.</p>
+    </div>
+    <div class="program-item">
+      <h3>📋 La méthode M.A.R.R.E. appliquée</h3>
+      <p>Une application semaine par semaine sur tes vraies tâches, ton vrai contexte.</p>
+    </div>
+    <div class="program-item">
+      <h3>📈 Suivi de ta progression</h3>
+      <p>Tu mesures tes heures récupérées au fil des semaines — chiffres concrets.</p>
+    </div>
+    <div class="program-item">
+      <h3>🤖 Claude qui te connaît vraiment</h3>
+      <p>À la fin des 30 jours, Claude connaît ton activité et gère des pans entiers de ton quotidien.</p>
+    </div>
+  </div>
+
+  <div style="text-align:center">
+    <a href="#cta" class="btn">Voir les détails →</a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     5. FORMATEUR
+══════════════════════════════════ -->
+<section class="section-white">
+  <div class="trainer-card">
+    <img src="noe.png" alt="Noé Porchier-Cizaire" class="trainer-avatar">
+    <h2>👨‍✈️ Qui est Noé, ton formateur ?</h2>
+    <ul class="trainer-bullets">
+      <li>Fondateur de PRCZ, agence de stratégie IA.</li>
+      <li>A cartographié le temps de dizaines de solopreneurs — 30 à 40% était délégable à l'IA.</li>
+      <li>Travaille avec Claude comme collaborateur au quotidien — pas comme outil.</li>
+      <li>Partage uniquement ce qui a été testé sur de vraies activités, avec de vrais résultats mesurés.</li>
+    </ul>
+    <p class="trainer-quote">
+      "Je n'enseigne pas l'IA en théorie. Je te montre exactement comment j'ai reconfiguré ma façon de travailler — et comment tu peux faire pareil en 30 jours."
+    </p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     6. PAS FAIT POUR TOI
+══════════════════════════════════ -->
+<section class="section-off2">
+  <h2 class="section-title">⚠️ Altitude n'est pas faite pour toi si…</h2>
+  <p class="section-sub-text">Sois honnête avec toi-même avant d'aller plus loin.</p>
+
+  <div class="notfor-grid">
+    <div class="notfor-item">❌ Tu cherches une solution magique sans effort de ta part.</div>
+    <div class="notfor-item">❌ Tu n'es pas prêt à remettre en question ta façon de travailler.</div>
+    <div class="notfor-item">❌ Tu veux juste "tester ChatGPT" sans vraie intention de changer.</div>
+    <div class="notfor-item">❌ Tu ne passeras pas à l'action entre les modules.</div>
+  </div>
+
+  <p class="bridge">
+    En revanche, si tu portes seul un volume de travail pensé pour plusieurs personnes — et que tu veux enfin <strong>plus de bras, intelligents et disponibles</strong> — tu es exactement au bon endroit. ✅
+  </p>
+</section>
+
+<!-- ══════════════════════════════════
+     7. RÉSULTATS CONCRETS
+══════════════════════════════════ -->
+<section class="section-white">
+  <div class="results-inner">
+    <div class="results-visual">
+      <h3>Exemples de gains mesurés</h3>
+      <div class="results-stat">
+        <div class="stat-row">
+          <span class="stat-before">Proposition commerciale : 3h</span>
+          <span class="stat-arrow">→</span>
+          <span class="stat-after">25 min</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-before">Synthèse de réunion : 45 min</span>
+          <span class="stat-arrow">→</span>
+          <span class="stat-after">8 min</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-before">Emails complexes : ~2h/jour</span>
+          <span class="stat-arrow">→</span>
+          <span class="stat-after">divisé par 3</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-before">Veille sectorielle : jamais</span>
+          <span class="stat-arrow">→</span>
+          <span class="stat-after">20 min le lundi</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="results-content">
+      <h2>🎯 Les résultats que tu peux viser</h2>
+      <ul class="results-list">
+        <li>
+          <span class="bullet">14h</span>
+          <span><strong>14 heures récupérées par semaine</strong> — réinvesties dans ce qui compte vraiment.</span>
+        </li>
+        <li>
+          <span class="bullet">↓</span>
+          <span>Moins de charge cognitive : ton cerveau arrête de jongler en permanence.</span>
+        </li>
+        <li>
+          <span class="bullet">→</span>
+          <span>Les projets stratégiques qui "attendent" depuis des mois — <strong>ils avancent enfin</strong>.</span>
+        </li>
+        <li>
+          <span class="bullet">∞</span>
+          <span>Un système qui tourne — pas juste une bonne semaine de productivité.</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     8. BONUS
+══════════════════════════════════ -->
+<section class="section-off">
+  <h2 class="section-title">🎁 Inclus dans Altitude</h2>
+  <p class="section-sub-text">Tout ce qu'il faut pour que Claude devienne opérationnel dans ton activité dès la semaine 1.</p>
+
+  <div class="bonus-grid">
+    <div class="bonus-card">
+      <div class="bonus-icon">🗺️</div>
+      <h3>Templates de micro-audit</h3>
+      <p>Cartographie ton temps en moins de 2h — exactement comme Noé le fait avec ses clients.</p>
+    </div>
+    <div class="bonus-card">
+      <div class="bonus-icon">⚙️</div>
+      <h3>Configurations prêtes à l'emploi</h3>
+      <p>Mémoire, projets, skills — tout configuré pour ton profil (cadre ou solopreneur).</p>
+    </div>
+    <div class="bonus-card">
+      <div class="bonus-icon">📊</div>
+      <h3>Tableau de bord de suivi</h3>
+      <p>Mesure tes heures récupérées semaine par semaine — avec des chiffres, pas des impressions.</p>
+    </div>
+  </div>
+
+  <div style="text-align:center">
+    <a href="#cta" class="btn">Accéder à la formation →</a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     9. CTA FINALE
+══════════════════════════════════ -->
+<section class="section-cta" id="cta">
+  <h2>Tu as deux choix</h2>
+  <p class="cta-sub-line">L'un laisse les choses en l'état. L'autre les transforme.</p>
+
+  <div class="choices">
+    <div class="choice-bad">
+      ✦ Continuer comme aujourd'hui — subir le volume, reporter les trucs qui comptent, espérer que ça se libère.
+    </div>
+    <div class="choice-good">
+      ✈️ Rejoindre ALTITUDE et construire en 30 jours un système qui te donne <strong>plus de bras, plus de clarté, et 14h de plus par semaine</strong>.
+    </div>
+  </div>
+
+  <p class="cta-nudge">👉 Tu réponds à cet email — et on échange <strong>5 minutes</strong> pour vérifier qu'Altitude est fait pour toi.</p>
+  <a href="mailto:noe@prcz.fr?subject=Altitude — Je souhaite rejoindre le programme" class="btn" style="font-size:15px;padding:18px 50px;">
+    Réserver ma place →
+  </a>
+</section>
+
+<!-- ══════════════════════════════════
+     10. FOOTER
+══════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-legal">
+      <strong>⚠️ Avertissement légal</strong>
+      La formation ALTITUDE a été conçue à des fins strictement pédagogiques. Les résultats présentés (heures récupérées, gains de temps) sont issus d'expériences réelles mais ne constituent pas une garantie de résultats identiques. Les résultats varient selon le profil, l'investissement personnel et le contexte de chaque participant.
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-logo">ALTITUDE</div>
+      <ul class="footer-links">
+        <li><a href="#">Accueil</a></li>
+        <li><a href="#programme">Programme</a></li>
+        <li><a href="#">CGV</a></li>
+        <li><a href="mailto:noe@prcz.fr">Contact</a></li>
+      </ul>
+    </div>
+    <p class="footer-copy">© 2026 PRCZ · Altitude Formation — Tous droits réservés</p>
+  </div>
+</footer>
+
+</body>
+</html>
