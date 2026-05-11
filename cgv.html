@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CGV – ALTITUDE</title>
+  <meta name="description" content="Conditions Générales de Vente de la formation Altitude par PRCZ." />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ─── CGV PAGE ─── */
+    .cgv-page {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 80px 24px 100px;
+    }
+
+    .cgv-page h1 {
+      font-size: clamp(28px, 4vw, 38px);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .cgv-page .cgv-updated {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 48px;
+      display: block;
+    }
+
+    .cgv-section {
+      margin-bottom: 40px;
+    }
+
+    .cgv-section h2 {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid transparent;
+      border-image: var(--grad2) 1;
+      display: inline-block;
+    }
+
+    .cgv-section p,
+    .cgv-section li {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .cgv-section p + p {
+      margin-top: 10px;
+    }
+
+    .cgv-section ul {
+      list-style: none;
+      padding: 0;
+      margin: 12px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .cgv-section ul li {
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .cgv-section ul li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 800;
+    }
+
+    .cgv-section strong {
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .cgv-identity-card {
+      background: var(--off);
+      border: 1px solid var(--light-border);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      margin: 16px 0;
+    }
+
+    .cgv-identity-card p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .cgv-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 40px;
+      transition: color .2s, transform .2s;
+    }
+
+    .cgv-back:hover {
+      color: var(--text);
+      transform: translateX(-4px);
+    }
+
+    .cgv-highlight {
+      background: rgba(100, 60, 240, 0.05);
+      border: 1px solid rgba(100, 60, 240, 0.15);
+      border-radius: 12px;
+      padding: 18px 22px;
+      margin: 12px 0;
+    }
+
+    .cgv-highlight p {
+      color: var(--text) !important;
+      font-weight: 600;
+    }
+
+    @media (max-width: 768px) {
+      .cgv-page {
+        padding: 60px 20px 80px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="logoaltitude.png" alt="ALTITUDE" class="nav-logo-img" />
+    </a>
+
+    <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="index.html#programme">Programme</a></li>
+      <li><a href="index.html#faq">FAQ</a></li>
+      <li><a href="https://altitude-business.systeme.io/altitude-ambassadeur" class="btn btn-nav">Rejoindre le
+          programme</a></li>
+    </ul>
+  </nav>
+
+  <!-- CGV CONTENT -->
+  <main class="cgv-page">
+    <a href="index.html" class="cgv-back">← Retour à l'accueil</a>
+
+    <h1>Conditions Générales de Vente</h1>
+    <span class="cgv-updated">Dernière mise à jour : mai 2026</span>
+
+    <!-- 1. IDENTITÉ -->
+    <div class="cgv-section">
+      <h2>1. Identité du vendeur</h2>
+      <p>Le présent site est édité par :</p>
+      <div class="cgv-identity-card">
+        <p><strong>Altitude</strong></p>
+        <p>PORCHIER-CIZAIRE Noé</p>
+        <p>Entrepreneur Individuel</p>
+        <p>SIRET : 939 228 284</p>
+        <p>Contact : <a href="mailto:noe@prcz.fr" style="color: #6633cc; text-decoration: underline;">noe@prcz.fr</a></p>
+      </div>
+    </div>
+
+    <!-- 2. OBJET -->
+    <div class="cgv-section">
+      <h2>2. Objet</h2>
+      <p>Les présentes Conditions Générales de Vente (CGV) régissent la vente de programmes de formation en ligne,
+        d'accès à des plateformes pédagogiques, de contenus numériques et de services associés proposés par Altitude à
+        des consommateurs (B2C).</p>
+      <p>Toute commande implique l'acceptation sans réserve des présentes CGV.</p>
+    </div>
+
+    <!-- 3. OFFRES -->
+    <div class="cgv-section">
+      <h2>3. Offres et contenu des prestations</h2>
+      <p>Altitude propose plusieurs offres.</p>
+      <p>Chaque offre fait l'objet :</p>
+      <ul>
+        <li>d'une description détaillée sur le site</li>
+        <li>précisant le contenu, les objectifs, les modalités d'accès, la durée et le prix</li>
+      </ul>
+    </div>
+
+    <!-- 4. CONDITIONS D'ACCÈS -->
+    <div class="cgv-section">
+      <h2>4. Conditions d'accès</h2>
+      <p>L'accès aux formations est :</p>
+      <ul>
+        <li>personnel</li>
+        <li>non transférable</li>
+        <li>strictement réservé à l'acheteur</li>
+      </ul>
+      <p>Les identifiants fournis sont confidentiels.</p>
+      <div class="cgv-highlight">
+        <p>Toute utilisation abusive (partage de compte, diffusion des contenus) pourra entraîner une suspension
+          immédiate, sans remboursement.</p>
+      </div>
+    </div>
+
+    <!-- 5. DURÉE D'ACCÈS -->
+    <div class="cgv-section">
+      <h2>5. Durée d'accès</h2>
+      <p>Sauf mention contraire sur la page de vente :</p>
+      <ul>
+        <li>l'accès est accordé pour la durée indiquée lors de l'achat</li>
+        <li>ou pour une durée illimitée, tant que la plateforme existe</li>
+      </ul>
+      <p>Altitude se réserve le droit de faire évoluer les contenus (mise à jour, amélioration, restructuration).</p>
+    </div>
+
+    <!-- 6. ÉVOLUTIONS -->
+    <div class="cgv-section">
+      <h2>6. Évolutions des contenus</h2>
+      <ul>
+        <li>Les mises à jour mineures sont incluses</li>
+        <li>Les nouveaux programmes ou modules majeurs peuvent faire l'objet d'une offre distincte, sauf mention
+          contraire</li>
+        <li>Aucun droit acquis n'est garanti sur les contenus futurs non explicitement inclus</li>
+      </ul>
+    </div>
+
+    <!-- 7. PRIX -->
+    <div class="cgv-section">
+      <h2>7. Prix et paiement</h2>
+      <p>Les prix sont indiqués en euros (€), toutes taxes comprises (TTC).</p>
+      <p>Le paiement est exigible immédiatement lors de la commande :</p>
+      <ul>
+        <li>carte bancaire</li>
+        <li>ou tout autre moyen proposé sur la plateforme</li>
+      </ul>
+      <p>La validation du paiement vaut acceptation définitive du contrat.</p>
+    </div>
+
+    <!-- 8. RÉTRACTATION -->
+    <div class="cgv-section">
+      <h2>8. Droit de rétractation</h2>
+      <p>Conformément à l'article L221-28 du Code de la consommation :</p>
+      <div class="cgv-highlight">
+        <p>Le droit de rétractation ne s'applique pas aux contenus numériques fournis immédiatement après paiement et
+          dont l'exécution a commencé avec l'accord du consommateur.</p>
+      </div>
+      <p>En validant sa commande, le client :</p>
+      <ul>
+        <li>reconnaît accéder immédiatement aux contenus</li>
+        <li>renonce expressément à son droit de rétractation</li>
+      </ul>
+      <p>Aucun remboursement ne pourra être exigé après accès effectif à la plateforme.</p>
+    </div>
+
+    <!-- 9. GARANTIE -->
+    <div class="cgv-section">
+      <h2>9. Absence de garantie de résultats</h2>
+      <p>Altitude est tenue à une obligation de moyens, et non de résultats.</p>
+      <p>Les formations fournissent :</p>
+      <ul>
+        <li>des méthodes</li>
+        <li>des outils</li>
+        <li>des cadres de travail</li>
+      </ul>
+      <p>La réussite dépend de l'implication personnelle du client.</p>
+      <div class="cgv-highlight">
+        <p>Aucun résultat financier, professionnel ou commercial n'est garanti.</p>
+      </div>
+    </div>
+
+    <!-- 11. RESPONSABILITÉ -->
+    <div class="cgv-section">
+      <h2>10. Responsabilité</h2>
+      <p>Altitude ne saurait être tenue responsable :</p>
+      <ul>
+        <li>des décisions prises par le client</li>
+        <li>de l'usage fait des contenus</li>
+        <li>des résultats obtenus ou non</li>
+      </ul>
+      <p>La responsabilité est strictement limitée au montant payé par le client.</p>
+    </div>
+
+    <!-- 12. PI -->
+    <div class="cgv-section">
+      <h2>11. Propriété intellectuelle</h2>
+      <p>L'ensemble des contenus (vidéos, textes, supports, frameworks, méthodes) est protégé par le droit de la
+        propriété intellectuelle.</p>
+      <div class="cgv-highlight">
+        <p>Toute reproduction, diffusion ou exploitation non autorisée est interdite.</p>
+      </div>
+    </div>
+
+    <!-- 13. DONNÉES -->
+    <div class="cgv-section">
+      <h2>12. Données personnelles</h2>
+      <p>Les données collectées sont nécessaires à la gestion des commandes et des accès.</p>
+      <p>Le client dispose d'un droit d'accès, de rectification et de suppression conformément au RGPD.</p>
+    </div>
+
+    <!-- 14. RÉSILIATION -->
+    <div class="cgv-section">
+      <h2>13. Résiliation</h2>
+      <p>Altitude se réserve le droit de résilier l'accès, sans remboursement, en cas de :</p>
+      <ul>
+        <li>non-respect des CGV</li>
+        <li>fraude</li>
+        <li>partage des accès</li>
+        <li>comportement nuisible à la communauté</li>
+      </ul>
+    </div>
+
+    <!-- 15. LITIGES -->
+    <div class="cgv-section">
+      <h2>14. Droit applicable – Litiges</h2>
+      <p>Les présentes CGV sont régies par le droit français.</p>
+      <p>En cas de litige :</p>
+      <ul>
+        <li>une solution amiable sera recherchée</li>
+        <li>à défaut, les tribunaux compétents seront ceux du ressort du domicile du consommateur</li>
+      </ul>
+    </div>
+
+    <!-- 16. ACCEPTATION -->
+    <div class="cgv-section">
+      <h2>15. Acceptation</h2>
+      <p>Le client reconnaît avoir pris connaissance des CGV et les accepter sans réserve avant toute commande.</p>
+    </div>
+
+    <!-- CTA -->
+    <div class="btn-center" style="margin-top: 60px;">
+      <a href="index.html" class="btn">← Retour à l'accueil</a>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-legal">
+        <strong>⚠️ Avertissement légal</strong>
+        La formation Altitude a été conçue à des fins strictement
+        pédagogiques. Les résultats présentés (heures récupérées, gains de temps) sont issus d'expériences réelles mais
+        ne constituent pas une garantie de résultats identiques. Les résultats varient selon le profil, l'investissement
+        personnel et le contexte de chaque participant.
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-logo"><img src="logoaltitude.png" alt="Altitude" class="inline-logo"></div>
+        <ul class="footer-links">
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="index.html#programme">Programme</a></li>
+          <li><a href="cgv.html">CGV</a></li>
+          <li><a href="mailto:noe@prcz.fr">Contact</a></li>
+        </ul>
+      </div>
+      <p class="footer-copy">© 2026 PRCZ · Altitude Formation :
+        Tous droits réservés</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
