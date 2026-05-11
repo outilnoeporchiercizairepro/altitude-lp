@@ -1,391 +1,500 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ALTITUDE — Récupère 14h/semaine en 30 jours</title>
+  <title>ALTITUDE : Récupère 14h/semaine en 30 jours</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
 
-<!-- ══════════════════════════════════
+  <!-- ══════════════════════════════════
      1. NAVBAR
 ══════════════════════════════════ -->
-<nav>
-  <div class="nav-logo">
-    <img src="logoaltitude.png" alt="ALTITUDE" class="nav-logo-img" />
-  </div>
+  <nav>
+    <a href="#" class="nav-logo">
+      <img src="logoaltitude.png" alt="ALTITUDE" class="nav-logo-img" />
+    </a>
 
-  <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
+    <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
 
-  <ul class="nav-links">
-    <li><a href="#">Accueil</a></li>
-    <li><a href="#programme">Programme</a></li>
-    <li><a href="#cta">Rejoindre</a></li>
-    <li><a href="#">CGV</a></li>
-  </ul>
-</nav>
+    <ul class="nav-links">
+      <li><a href="#">Accueil</a></li>
+      <li><a href="#programme">Programme</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="https://3de6-noe.systeme.io/altitude-ambassadeur" class="btn btn-nav">Rejoindre le programme</a></li>
+    </ul>
+  </nav>
 
-<!-- ══════════════════════════════════
+  <!-- ══════════════════════════════════
      2. HERO
 ══════════════════════════════════ -->
-<section class="hero">
-  <div class="hero-logo-duo">
-    <img src="logoaltitude.png" alt="Altitude" class="hero-main-logo">
-    <span class="hero-plus">+</span>
-    <img src="claude-logo.png" alt="Claude AI" class="hero-claude-logo">
-  </div>
+  <section class="hero">
+    <div class="hero-logo-duo">
+      <img src="logoaltitude.png" alt="Altitude" class="hero-main-logo">
+      <span class="hero-plus">+</span>
+      <img src="claude-logo.png" alt="Claude AI" class="hero-claude-logo">
+    </div>
 
-  <h1>Récupère <span class="highlight">14h / semaine</span><br>dès ce mois-ci</h1>
+    <h1>Récupère <span class="highlight">14h / semaine</span><br>dès ce mois-ci</h1>
 
-  <p class="hero-sub">
-    Fais de Claude ton bras droit stratégique.<br>L'IA n'est pas un gadget, c'est une <strong>altitude</strong>.
-  </p>
+    <p class="hero-sub">
+      Fais de Claude ton bras droit stratégique.<br>L'IA n'est pas un gadget, c'est une <strong>Altitude</strong>.
+    </p>
 
-  <div class="hero-cta-wrap">
-    <a href="#cta" class="btn">Récupérer mon temps →</a>
-    <p class="hero-cta-badge">Méthode intensive · 30 jours · -14h/semaine</p>
-  </div>
-</section>
+    <div class="hero-cta-wrap">
+      <a href="https://3de6-noe.systeme.io/altitude-ambassadeur" class="btn">Récupérer mon temps →</a>
+      <p class="hero-cta-badge">Méthode intensive · 30 jours · -14h/semaine</p>
+    </div>
+  </section>
 
-<!-- ══════════════════════════════════
+  <!-- ══════════════════════════════════
      2b. LE CONSTAT
 ══════════════════════════════════ -->
-<section class="section-off">
-  <div class="pains-container">
-    <h2 class="section-title">Ton quotidien aujourd'hui</h2>
-    <ul class="hero-pains" style="margin-bottom: 0;">
-      <li>👉 Tu gères tout seul — stratégie ET opérationnel — et <strong>ton énergie s'y épuise</strong> ?</li>
-      <li>👉 Tu utilises l'IA depuis des mois mais <strong>rien n'a vraiment changé</strong> ?</li>
-      <li>👉 Tu veux une méthode <strong>immédiatement applicable</strong> — pas un cours théorique ?</li>
-    </ul>
-  </div>
-</section>
+  <section class="section-off">
+    <div class="pains-container">
+      <h2 class="section-title">Ton quotidien aujourd'hui</h2>
+      <div class="pains-grid">
+        <div class="pain-card">
+          <p class="pain-text">👉 Tu gères tout seul : stratégie ET opérationnel : et <strong>ton énergie s'y
+              épuise</strong> ?</p>
+        </div>
+        <div class="pain-card">
+          <p class="pain-text">👉 Tu utilises l'IA depuis des mois mais <strong>rien n'a vraiment changé</strong> ?</p>
+        </div>
+        <div class="pain-card">
+          <p class="pain-text">👉 Tu veux une méthode <strong>immédiatement applicable</strong> : pas un cours théorique
+            ?</p>
+        </div>
+        <div class="pain-card pain-card-highlight">
+          <p class="pain-text">👉 Tu vois l'IA partout mais <strong>tu rames encore</strong>, t'as l'impression de
+            passer à côté d'une vague à ne surtout pas rater (et tu as raison).</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<!-- ══════════════════════════════════
+  <!-- ══════════════════════════════════
      3. POURQUOI DIFFÉRENT
 ══════════════════════════════════ -->
-<section class="section-white">
-  <div class="vs-container">
-    <h2 class="section-title">Pourquoi <span class="grad-text">Altitude</span> change tout</h2>
-    <p class="section-sub-text">Une différence d'approche radicale entre l'usage passif et la stratégie active.</p>
+  <section class="section-white">
+    <div class="vs-container">
+      <h2 class="section-title">Pourquoi <span class="grad-text"><img src="logoaltitude.png" alt="Altitude"
+            class="inline-logo"></span> change tout</h2>
+      <p class="section-sub-text">Une différence d'approche radicale entre l'usage passif et la stratégie active.</p>
 
-    <div class="vs-table">
-      <!-- SANS -->
-      <div class="vs-column vs-bad">
-        <div class="vs-header">SANS ALTITUDE ❌</div>
-        <div class="vs-item">
-          <strong>Usage ponctuel</strong>
-          <p>Ouvrir Claude ou ChatGPT, poser une question, fermer l'onglet — rien ne change.</p>
+      <div class="vs-table">
+        <!-- SANS -->
+        <div class="vs-column vs-bad">
+          <div class="vs-header">SANS ALTITUDE ❌</div>
+          <div class="vs-item">
+            <strong>Usage ponctuel</strong>
+            <p>Ouvrir Claude ou ChatGPT, poser une question, fermer l'onglet : rien ne change.</p>
+          </div>
+          <div class="vs-item">
+            <strong>Prompts isolés</strong>
+            <p>Apprendre des "hacks" sans logique d'intégration à ton activité réelle.</p>
+          </div>
+          <div class="vs-item">
+            <strong>Déception</strong>
+            <p>Conclure que "l'IA c'est pas si ouf" car elle n'est pas activée au bon niveau.</p>
+          </div>
         </div>
-        <div class="vs-item">
-          <strong>Prompts isolés</strong>
-          <p>Apprendre des "hacks" sans logique d'intégration à ton activité réelle.</p>
-        </div>
-        <div class="vs-item">
-          <strong>Déception</strong>
-          <p>Conclure que "l'IA c'est pas si ouf" car elle n'est pas activée au bon niveau.</p>
+
+        <!-- AVEC -->
+        <div class="vs-column vs-good">
+          <div class="vs-header">AVEC ALTITUDE ✅</div>
+          <div class="vs-item">
+            <strong>Intégration profonde</strong>
+            <p>Une méthode en 5 étapes pour faire de Claude un vrai collaborateur interne.</p>
+          </div>
+          <div class="vs-item">
+            <strong>Contexte métier</strong>
+            <p>Claude connaît ton business, ton style et tes priorités stratégiques.</p>
+          </div>
+          <div class="vs-item">
+            <strong>Transformation</strong>
+            <p>30 jours pour passer d'un outil gadget à une hausse massive de productivité.</p>
+          </div>
         </div>
       </div>
 
-      <!-- AVEC -->
-      <div class="vs-column vs-good">
-        <div class="vs-header">AVEC ALTITUDE ✅</div>
-        <div class="vs-item">
-          <strong>Intégration profonde</strong>
-          <p>Une méthode en 5 étapes pour faire de Claude un vrai collaborateur interne.</p>
-        </div>
-        <div class="vs-item">
-          <strong>Contexte métier</strong>
-          <p>Claude connaît ton business, ton style et tes priorités stratégiques.</p>
-        </div>
-        <div class="vs-item">
-          <strong>Transformation</strong>
-          <p>30 jours pour passer d'un outil gadget à une hausse massive de productivité.</p>
-        </div>
+      <div class="btn-center" style="margin-top: 48px;">
+        <a href="https://3de6-noe.systeme.io/altitude-ambassadeur" class="btn">Je veux cette transformation →</a>
       </div>
     </div>
+  </section>
 
-    <div class="btn-center" style="margin-top: 48px;">
-      <a href="#cta" class="btn">Je veux cette transformation →</a>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════
+  <!-- ══════════════════════════════════
      3b. POURQUOI CLAUDE ?
 ══════════════════════════════════ -->
-<section class="section-off2">
-  <div class="claude-container">
-    <h2 class="section-title">Pourquoi <span class="grad-text">Claude</span> est notre fil conducteur ?</h2>
-    <p class="section-sub-text">Altitude n'est pas une formation "IA" de plus. C'est une immersion dans l'outil le plus puissant pour les entrepreneurs.</p>
-    
-    <div class="claude-grid">
-      <div class="claude-feature">
-        <div class="claude-icon">
-          <img src="claude-logo.png" alt="Claude AI" style="height: 48px; width: auto; margin-bottom: 0;">
+  <section class="section-off2">
+    <div class="claude-container">
+      <h2 class="section-title">Pourquoi <span class="grad-text">Claude</span> est notre fil conducteur ?</h2>
+      <p class="section-sub-text">Altitude n'est pas une
+        formation "IA" de plus. C'est une immersion dans l'outil le plus puissant pour les entrepreneurs.</p>
+
+      <div class="claude-grid">
+        <div class="claude-feature">
+          <div class="claude-icon">
+            <img src="claude-logo.png" alt="Claude AI" style="height: 70px; width: auto; margin-bottom: 0;">
+          </div>
+          <h3>L'intelligence du raisonnement</h3>
+          <p>Contrairement aux autres modèles, Claude possède une capacité de nuance et de compréhension des
+            instructions complexes qui le rapproche d'un collaborateur senior.</p>
         </div>
-        <h3>L'intelligence du raisonnement</h3>
-        <p>Contrairement aux autres modèles, Claude possède une capacité de nuance et de compréhension des instructions complexes qui le rapproche d'un collaborateur senior.</p>
-      </div>
-      <div class="claude-feature">
-        <div class="claude-icon">🖋️</div>
-        <h3>La plume la plus humaine</h3>
-        <p>Oubliez le style robotique. Claude écrit avec une justesse, une empathie et une clarté qui respectent l'identité de votre marque sans sonner artificiel.</p>
-      </div>
-      <div class="claude-feature">
-        <div class="claude-icon">📂</div>
-        <h3>Un contexte sans limite</h3>
-        <p>Sa fenêtre de contexte massive lui permet d'absorber l'intégralité de vos documents business pour vous répondre avec une précision chirurgicale.</p>
+        <div class="claude-feature">
+          <div class="claude-icon">🖋️</div>
+          <h3>La plume la plus humaine</h3>
+          <p>Oubliez le style robotique. Claude écrit avec une justesse, une empathie et une clarté qui respectent
+            l'identité de votre marque sans sonner artificiel.</p>
+        </div>
+        <div class="claude-feature">
+          <div class="claude-icon">📂</div>
+          <h3>Un contexte sans limite</h3>
+          <p>Sa fenêtre de contexte massive lui permet d'absorber l'intégralité de vos documents business pour vous
+            répondre avec une précision chirurgicale.</p>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
 
-<!-- ══════════════════════════════════
+  <!-- ══════════════════════════════════
      4. MÉTHODE M.A.R.R.E.
 ══════════════════════════════════ -->
-<section class="section-off" id="programme">
-  <h2 class="section-title">La méthode <span class="grad-text">M.A.R.R.E.</span></h2>
-  <p class="section-sub-text">Le framework propriétaire au cœur d'Altitude — appliqué à ton activité réelle, semaine par semaine.</p>
+  <section class="section-off" id="programme">
+    <h2 class="section-title">La méthode <span class="grad-text">M.A.R.R.E.</span></h2>
+    <p class="section-sub-text">Le framework propriétaire au cœur d'Altitude : appliqué à ton activité réelle, semaine
+      par semaine.</p>
 
-  <div class="marre-row">
-    <div class="marre-step">
-      <div class="marre-letter">M</div>
-      <div class="marre-word">Micro audit</div>
-      <div class="marre-desc">Cartographier ton temps tâche par tâche pour voir exactement où il part.</div>
-    </div>
-    <div class="marre-step">
-      <div class="marre-letter">A</div>
-      <div class="marre-word">Analyse</div>
-      <div class="marre-desc">Classer chaque tâche selon son potentiel de délégation à Claude.</div>
-    </div>
-    <div class="marre-step">
-      <div class="marre-letter">R</div>
-      <div class="marre-word">Réduction</div>
-      <div class="marre-desc">Commencer à déléguer concrètement — et mesurer ce que ça libère.</div>
-    </div>
-    <div class="marre-step">
-      <div class="marre-letter">R</div>
-      <div class="marre-word">Robotisation</div>
-      <div class="marre-desc">Construire des systèmes récurrents — Claude comme collaborateur permanent.</div>
-    </div>
-    <div class="marre-step">
-      <div class="marre-letter">E</div>
-      <div class="marre-word">Évaluation</div>
-      <div class="marre-desc">Mesurer, ajuster, ancrer — pour que le changement soit durable.</div>
-    </div>
-  </div>
-
-  <h2 class="section-title" style="margin-bottom:10px;">Ce qui est inclus</h2>
-  <p class="section-sub-text">30 jours d'intégration progressive dans ton environnement Claude complet.</p>
-
-  <div class="program-grid">
-    <div class="program-item">
-      <h3>🧠 L'environnement complet</h3>
-      <p>Mémoire, projets, skills, connecteurs, automatisations — pas juste la version basique.</p>
-    </div>
-    <div class="program-item">
-      <h3>📋 La méthode M.A.R.R.E. appliquée</h3>
-      <p>Une application semaine par semaine sur tes vraies tâches, ton vrai contexte.</p>
-    </div>
-    <div class="program-item">
-      <h3>📈 Suivi de ta progression</h3>
-      <p>Tu mesures tes heures récupérées au fil des semaines — chiffres concrets.</p>
-    </div>
-    <div class="program-item">
-      <h3>🤖 Claude qui te connaît vraiment</h3>
-      <p>À la fin des 30 jours, Claude connaît ton activité et gère des pans entiers de ton quotidien.</p>
-    </div>
-  </div>
-
-  <div class="btn-center">
-    <a href="#cta" class="btn">Voir les détails →</a>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════
-     5. FORMATEUR
-══════════════════════════════════ -->
-<section class="section-white">
-  <div class="trainer-card">
-    <img src="noe.png" alt="Noé Porchier-Cizaire" class="trainer-avatar">
-    <h2>Qui est Noé, ton formateur ?</h2>
-    <ul class="trainer-bullets">
-      <li>Fondateur de PRCZ, agence de stratégie IA.</li>
-      <li>A cartographié le temps de dizaines de solopreneurs — 30 à 40% était délégable à l'IA.</li>
-      <li>Premier à avoir utilisé la méthode <strong>M.A.R.R.E.</strong> pour sa propre activité.</li>
-      <li>Génère aujourd'hui des <strong>millions de vues</strong> sur LinkedIn (2M+ impressions).</li>
-      <li>Travaille avec Claude comme collaborateur au quotidien — pas comme outil.</li>
-    </ul>
-
-    <div class="trainer-social-proof">
-      <img src="linkedin-results.png" alt="Performance LinkedIn — 2 Millions de vues" class="linkedin-slide">
-      <p class="proof-caption">Résultat obtenu en étant seulement <strong>15 minutes par jour</strong> sur LinkedIn grâce à l'IA.</p>
-    </div>
-    <p class="trainer-quote">
-      "Je n'enseigne pas l'IA en théorie. Je te montre exactement comment j'ai reconfiguré ma façon de travailler — et comment tu peux faire pareil en 30 jours."
-    </p>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════
-     6. PAS FAIT POUR TOI
-══════════════════════════════════ -->
-<section class="section-off2">
-  <h2 class="section-title">⚠️ Altitude n'est pas faite pour toi si…</h2>
-  <p class="section-sub-text">Sois honnête avec toi-même avant d'aller plus loin.</p>
-
-  <div class="notfor-grid">
-    <div class="notfor-item">❌ Tu cherches une solution magique sans effort de ta part.</div>
-    <div class="notfor-item">❌ Tu n'es pas prêt à remettre en question ta façon de travailler.</div>
-    <div class="notfor-item">❌ Tu veux juste "tester ChatGPT" sans vraie intention de changer.</div>
-    <div class="notfor-item">❌ Tu ne passeras pas à l'action entre les modules.</div>
-  </div>
-
-  <p class="bridge">
-    En revanche, si tu portes seul un volume de travail pensé pour plusieurs personnes — et que tu veux enfin <strong>plus de bras, intelligents et disponibles</strong> — tu es exactement au bon endroit. ✅
-  </p>
-</section>
-
-<!-- ══════════════════════════════════
-     7. RÉSULTATS CONCRETS
-══════════════════════════════════ -->
-<section class="section-white">
-  <div class="results-inner">
-    <div class="results-visual">
-      <h3>Exemples de gains mesurés</h3>
-      <div class="results-stat">
-        <div class="stat-row">
-          <span class="stat-before">Proposition commerciale : 3h</span>
-          <span class="stat-arrow">→</span>
-          <span class="stat-after">25 min</span>
-        </div>
-        <div class="stat-row">
-          <span class="stat-before">Synthèse de réunion : 45 min</span>
-          <span class="stat-arrow">→</span>
-          <span class="stat-after">8 min</span>
-        </div>
-        <div class="stat-row">
-          <span class="stat-before">Emails complexes : ~2h/jour</span>
-          <span class="stat-arrow">→</span>
-          <span class="stat-after">divisé par 3</span>
-        </div>
-        <div class="stat-row">
-          <span class="stat-before">Veille sectorielle : jamais</span>
-          <span class="stat-arrow">→</span>
-          <span class="stat-after">20 min le lundi</span>
-        </div>
+    <div class="marre-row">
+      <div class="marre-step">
+        <div class="marre-letter">M</div>
+        <div class="marre-word">Micro audit</div>
+        <div class="marre-desc">Cartographier ton temps tâche par tâche pour voir exactement où il part.</div>
+      </div>
+      <div class="marre-step">
+        <div class="marre-letter">A</div>
+        <div class="marre-word">Analyse</div>
+        <div class="marre-desc">Classer chaque tâche selon son potentiel de délégation à Claude.</div>
+      </div>
+      <div class="marre-step">
+        <div class="marre-letter">R</div>
+        <div class="marre-word">Réduction</div>
+        <div class="marre-desc">Commencer à déléguer concrètement : et mesurer ce que ça libère.</div>
+      </div>
+      <div class="marre-step">
+        <div class="marre-letter">R</div>
+        <div class="marre-word">Robotisation</div>
+        <div class="marre-desc">Construire des systèmes récurrents : Claude comme collaborateur permanent.</div>
+      </div>
+      <div class="marre-step">
+        <div class="marre-letter">E</div>
+        <div class="marre-word">Évaluation</div>
+        <div class="marre-desc">Mesurer, ajuster, ancrer : pour que le changement soit durable.</div>
       </div>
     </div>
 
-    <div class="results-content">
-      <h2>🎯 Les résultats que tu peux viser</h2>
-      <ul class="results-list">
-        <li>
-          <span class="bullet">14h</span>
-          <span><strong>14 heures récupérées par semaine</strong> — réinvesties dans ce qui compte vraiment.</span>
-        </li>
-        <li>
-          <span class="bullet">↓</span>
-          <span>Moins de charge cognitive : ton cerveau arrête de jongler en permanence.</span>
-        </li>
-        <li>
-          <span class="bullet">→</span>
-          <span>Les projets stratégiques qui "attendent" depuis des mois — <strong>ils avancent enfin</strong>.</span>
-        </li>
-        <li>
-          <span class="bullet">∞</span>
-          <span>Un système qui tourne — pas juste une bonne semaine de productivité.</span>
-        </li>
-      </ul>
-    </div>
-  </div>
-</section>
+    <h2 class="section-title" style="margin-bottom:10px;">Ce qui est inclus</h2>
+    <p class="section-sub-text">30 jours d'intégration progressive dans ton environnement Claude complet.</p>
 
-<!-- ══════════════════════════════════
+    <div class="program-grid">
+      <div class="program-item">
+        <h3><img src="claude-logo.png" alt="Claude" style="height: 24px; width: auto; vertical-align: middle; margin-right: 6px;"> L'environnement complet</h3>
+        <p>Mémoire, projets, skills, connecteurs, automatisations : pas juste la version basique.</p>
+      </div>
+      <div class="program-item">
+        <h3>📋 La méthode M.A.R.R.E. appliquée</h3>
+        <p>Une application semaine par semaine sur tes vraies tâches, ton vrai contexte.</p>
+      </div>
+      <div class="program-item">
+        <h3>📈 Suivi de ta progression</h3>
+        <p>Tu mesures tes heures récupérées au fil des semaines : chiffres concrets.</p>
+      </div>
+      <div class="program-item">
+        <h3><img src="claude-logo.png" alt="Claude" style="height: 24px; width: auto; vertical-align: middle; margin-right: 6px;"> Claude qui te connaît vraiment</h3>
+        <p>À la fin des 30 jours, Claude connaît ton activité et gère des pans entiers de ton quotidien.</p>
+      </div>
+    </div>
+
+    <div class="btn-center">
+      <a href="https://3de6-noe.systeme.io/altitude-ambassadeur" class="btn">Voir les détails →</a>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+     5. FORMATEUR
+══════════════════════════════════ -->
+  <section class="section-white">
+    <div class="trainer-card">
+      <img src="noe.png" alt="Noé Porchier-Cizaire" class="trainer-avatar">
+      <h2>Qui est Noé, ton formateur ?</h2>
+      <ul class="trainer-bullets">
+        <li>Fondateur de PRCZ, agence de stratégie IA.</li>
+        <li>A cartographié le temps de dizaines de solopreneurs : 30 à 40% était délégable à l'IA.</li>
+        <li>Premier à avoir utilisé la méthode <strong>M.A.R.R.E.</strong> pour sa propre activité.</li>
+        <li>Génère aujourd'hui des <strong>millions de vues</strong> sur LinkedIn (2M+ impressions).</li>
+        <li>Travaille avec Claude comme collaborateur au quotidien : pas comme outil.</li>
+      </ul>
+
+      <div class="trainer-social-proof">
+        <img src="linkedin-results.png" alt="Performance LinkedIn : 2 Millions de vues" class="linkedin-slide">
+        <p class="proof-caption">Résultat obtenu en étant seulement <strong>15 minutes par jour</strong> sur LinkedIn
+          grâce à l'IA.</p>
+      </div>
+      <p class="trainer-quote">
+        "Je n'enseigne pas l'IA en théorie. Je te montre exactement comment j'ai reconfiguré ma façon de travailler : et
+        comment tu peux faire pareil en 30 jours."
+      </p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+     6. PAS FAIT POUR TOI
+══════════════════════════════════ -->
+  <section class="section-off2">
+    <h2 class="section-title">⚠️ <img src="logoaltitude.png" alt="Altitude" class="inline-logo"> n'est pas faite pour
+      toi si…</h2>
+    <p class="section-sub-text">Sois honnête avec toi-même avant d'aller plus loin.</p>
+
+    <div class="notfor-grid">
+      <div class="notfor-item">❌ Tu cherches une solution magique sans effort de ta part.</div>
+      <div class="notfor-item">❌ Tu n'es pas prêt à remettre en question ta façon de travailler.</div>
+      <div class="notfor-item">❌ Tu veux juste "tester ChatGPT" sans vraie intention de changer.</div>
+      <div class="notfor-item">❌ Tu ne passeras pas à l'action entre les modules.</div>
+    </div>
+
+    <p class="bridge">
+      En revanche, si tu portes seul un volume de travail pensé pour plusieurs personnes : et que tu veux enfin
+      <strong>plus de bras, intelligents et disponibles</strong> : tu es exactement au bon endroit. ✅
+    </p>
+  </section>
+
+  <!-- ══════════════════════════════════
+     7. RÉSULTATS CONCRETS
+══════════════════════════════════ -->
+  <section class="section-white">
+    <div class="vs-container">
+      <h2 class="section-title">Ta courbe de performance avec <img src="logoaltitude.png" alt="Altitude"
+          class="inline-logo"></h2>
+      <p class="section-sub-text">Comment Claude passe de gadget à collaborateur en 30 jours.</p>
+
+      <div class="roadmap-container">
+        <!-- Axes -->
+        <div class="roadmap-axis-y">Heures gagnées / semaine</div>
+        <div class="roadmap-axis-x">Temps (Jours)</div>
+
+        <!-- Connection Line -->
+        <div class="roadmap-line"></div>
+
+        <!-- Milestones -->
+        <div class="roadmap-grid">
+          <!-- J0 -->
+          <div class="milestone-card" style="--step: 0;">
+            <div class="milestone-dot"></div>
+            <div class="milestone-info">
+              <span class="milestone-gain">+0h</span>
+              <span class="milestone-title">Lancement</span>
+              <p class="milestone-desc">Usage "gadget". Tu rames et l'IA te fait perdre du temps.</p>
+            </div>
+            <div class="milestone-day">J0</div>
+          </div>
+
+          <!-- J7 -->
+          <div class="milestone-card" style="--step: 1;">
+            <div class="milestone-dot"></div>
+            <div class="milestone-info">
+              <span class="milestone-gain">+3h</span>
+              <span class="milestone-title">Immersion</span>
+              <p class="milestone-desc"><strong>Skills & .md</strong> : Ton environnement est configuré.</p>
+            </div>
+            <div class="milestone-day">J7</div>
+          </div>
+
+          <!-- J10 -->
+          <div class="milestone-card" style="--step: 1.5;">
+            <div class="milestone-dot"></div>
+            <div class="milestone-info">
+              <span class="milestone-gain">+5h</span>
+              <span class="milestone-title">Prise en main</span>
+              <p class="milestone-desc"><strong>SID Prompts</strong> : Tu commences à déléguer tes premiers mails.</p>
+            </div>
+            <div class="milestone-day">J10</div>
+          </div>
+
+          <!-- J14 -->
+          <div class="milestone-card" style="--step: 2;">
+            <div class="milestone-dot"></div>
+            <div class="milestone-info">
+              <span class="milestone-gain">+7h</span>
+              <span class="milestone-title">Accélération</span>
+              <p class="milestone-desc"><strong>SID & Projets</strong> : Tu automatises tes tâches récurrentes.
+                L'exécution s'accélère.</p>
+            </div>
+            <div class="milestone-day">J14</div>
+          </div>
+
+          <!-- J21 -->
+          <div class="milestone-card" style="--step: 3;">
+            <div class="milestone-dot"></div>
+            <div class="milestone-info">
+              <span class="milestone-gain">+10h</span>
+              <span class="milestone-title">Optimisation</span>
+              <p class="milestone-desc"><strong>Connecteurs & Tokens</strong> : Tu gères des flux complexes sans
+                friction.</p>
+            </div>
+            <div class="milestone-day">J21</div>
+          </div>
+
+          <!-- J30 -->
+          <div class="milestone-card highlight" style="--step: 4;">
+            <div class="milestone-dot"></div>
+            <div class="milestone-info">
+              <span class="milestone-gain">+14h à 40h</span>
+              <span class="milestone-title">Maîtrise Totale</span>
+              <p class="milestone-desc"><strong>Claude Cowork</strong> : Tu as délégué l'invendable. Ton IA est ton bras
+                droit.</p>
+            </div>
+            <div class="milestone-day">J30</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
      8. BONUS
 ══════════════════════════════════ -->
-<section class="section-off">
-  <h2 class="section-title">🎁 Inclus dans Altitude</h2>
-  <p class="section-sub-text">Tout ce qu'il faut pour que Claude devienne opérationnel dans ton activité dès la semaine 1.</p>
+  <section class="section-off">
+    <h2 class="section-title">🎁 Inclus dans <img src="logoaltitude.png" alt="Altitude" class="inline-logo"></h2>
+    <p class="section-sub-text">Tout ce qu'il faut pour que Claude devienne opérationnel dans ton activité dès la
+      semaine 1.</p>
 
-  <div class="bonus-grid">
-    <div class="bonus-card">
-      <div class="bonus-icon">🗺️</div>
-      <h3>Templates de micro-audit</h3>
-      <p>Cartographie ton temps en moins de 2h — exactement comme Noé le fait avec ses clients.</p>
+    <div class="bonus-grid">
+      <div class="bonus-card">
+        <div class="bonus-icon">🗺️</div>
+        <h3>Templates de micro-audit</h3>
+        <p>Cartographie ton temps en moins de 2h : exactement comme Noé le fait avec ses clients.</p>
+      </div>
+      <div class="bonus-card">
+        <div class="bonus-icon">⚙️</div>
+        <h3>Configurations prêtes à l'emploi</h3>
+        <p>Mémoire, projets, skills : tout configuré pour ton profil (cadre ou solopreneur).</p>
+      </div>
+      <div class="bonus-card">
+        <div class="bonus-icon">📊</div>
+        <h3>Tableau de bord de suivi</h3>
+        <p>Mesure tes heures récupérées semaine par semaine : avec des chiffres, pas des impressions.</p>
+      </div>
     </div>
-    <div class="bonus-card">
-      <div class="bonus-icon">⚙️</div>
-      <h3>Configurations prêtes à l'emploi</h3>
-      <p>Mémoire, projets, skills — tout configuré pour ton profil (cadre ou solopreneur).</p>
-    </div>
-    <div class="bonus-card">
-      <div class="bonus-icon">📊</div>
-      <h3>Tableau de bord de suivi</h3>
-      <p>Mesure tes heures récupérées semaine par semaine — avec des chiffres, pas des impressions.</p>
-    </div>
-  </div>
 
-  <div class="btn-center">
-    <a href="#cta" class="btn">Accéder à la formation →</a>
-  </div>
-</section>
+    <div class="btn-center">
+      <a href="https://3de6-noe.systeme.io/altitude-ambassadeur" class="btn">Accéder à la formation →</a>
+    </div>
+  </section>
 
-<!-- ══════════════════════════════════
+  <!-- ══════════════════════════════════
+     8b. FAQ
+  ══════════════════════════════════ -->
+  <section class="section-white" id="faq">
+    <div class="faq-container">
+      <h2 class="section-title">Questions Fréquentes</h2>
+      <p class="section-sub-text">Tout ce que tu as besoin de savoir avant de décoller.</p>
+
+      <div class="faq-item">
+        <span class="faq-question">Est-ce qu'il faut savoir coder ?</span>
+        <p class="faq-answer">La réponse est non.</p>
+      </div>
+
+      <div class="faq-item">
+        <span class="faq-question">Est-ce qu'il faut être fort en informatique ?</span>
+        <p class="faq-answer">La réponse est non.</p>
+      </div>
+
+      <div class="faq-item">
+        <span class="faq-question">Si on n'a aucune compétence en IA, est-ce que c'est grave ?</span>
+        <p class="faq-answer">Non, on veut juste des gens extrêmement motivés.</p>
+      </div>
+
+      <div class="faq-item">
+        <span class="faq-question">Est-ce qu'on peut gagner plus que 14 heures par semaine ?</span>
+        <p class="faq-answer">Evidemment que oui. 14 heures, c'est le strict minimum. Certains gagnent 30 à 40 heures.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <span class="faq-question">Faut-il un niveau technique ?</span>
+        <p class="faq-answer">Non.</p>
+      </div>
+    </div>
+  </section>
+  <!-- ══════════════════════════════════
      9. CTA FINALE
 ══════════════════════════════════ -->
-<section class="section-cta" id="cta">
-  <h2>Tu as deux choix</h2>
-  <p class="cta-sub-line">L'un laisse les choses en l'état. L'autre les transforme.</p>
+  <section class="section-cta" id="cta">
+    <h2>Tu as deux choix</h2>
+    <p class="cta-sub-line">L'un laisse les choses en l'état. L'autre les transforme.</p>
 
-  <div class="choices">
-    <div class="choice-bad">
-      ✦ Continuer comme aujourd'hui — subir le volume, reporter les trucs qui comptent, espérer que ça se libère.
+    <div class="choices">
+      <div class="choice-bad">
+        ✦ Continuer comme aujourd'hui : subir le volume, reporter les trucs qui comptent, espérer que ça se libère.
+      </div>
+      <div class="choice-good">
+        ✈️ Rejoindre Altitude et construire en 30 jours un
+        système qui te donne <strong>plus de bras, plus de clarté, et 14h de plus par semaine</strong>.
+      </div>
     </div>
-    <div class="choice-good">
-      ✈️ Rejoindre ALTITUDE et construire en 30 jours un système qui te donne <strong>plus de bras, plus de clarté, et 14h de plus par semaine</strong>.
+
+    <p class="cta-nudge">👉 Tu cliques ici : et on échange <strong>5 minutes</strong> pour vérifier qu'Altitude est fait
+      pour toi.</p>
+
+    <div class="cta-btn-wrap">
+      <a href="https://3de6-noe.systeme.io/altitude-ambassadeur" class="btn cta-main-btn">
+        Réserver ma place →
+      </a>
+      <span class="cta-reassure">Échange de 5 min · Sans engagement · 10 places seulement</span>
     </div>
-  </div>
+  </section>
 
-  <p class="cta-nudge">👉 Tu réponds à cet email — et on échange <strong>5 minutes</strong> pour vérifier qu'Altitude est fait pour toi.</p>
-
-  <div class="cta-btn-wrap">
-    <a href="mailto:noe@prcz.fr?subject=Altitude — Je souhaite rejoindre le programme" class="btn cta-main-btn">
-      Réserver ma place →
-    </a>
-    <span class="cta-reassure">Échange de 5 min · Sans engagement · 10 places seulement</span>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════
+  <!-- ══════════════════════════════════
      10. FOOTER
 ══════════════════════════════════ -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-legal">
-      <strong>⚠️ Avertissement légal</strong>
-      La formation ALTITUDE a été conçue à des fins strictement pédagogiques. Les résultats présentés (heures récupérées, gains de temps) sont issus d'expériences réelles mais ne constituent pas une garantie de résultats identiques. Les résultats varient selon le profil, l'investissement personnel et le contexte de chaque participant.
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-legal">
+        <strong>⚠️ Avertissement légal</strong>
+        La formation Altitude a été conçue à des fins strictement
+        pédagogiques. Les résultats présentés (heures récupérées, gains de temps) sont issus d'expériences réelles mais
+        ne constituent pas une garantie de résultats identiques. Les résultats varient selon le profil, l'investissement
+        personnel et le contexte de chaque participant.
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-logo"><img src="logoaltitude.png" alt="Altitude" class="inline-logo"></div>
+        <ul class="footer-links">
+          <li><a href="#">Accueil</a></li>
+          <li><a href="#programme">Programme</a></li>
+          <li><a href="#">CGV</a></li>
+          <li><a href="mailto:noe@prcz.fr">Contact</a></li>
+        </ul>
+      </div>
+      <p class="footer-copy">© 2026 PRCZ · Altitude Formation :
+        Tous droits réservés</p>
     </div>
-    <div class="footer-bottom">
-      <div class="footer-logo">ALTITUDE</div>
-      <ul class="footer-links">
-        <li><a href="#">Accueil</a></li>
-        <li><a href="#programme">Programme</a></li>
-        <li><a href="#">CGV</a></li>
-        <li><a href="mailto:noe@prcz.fr">Contact</a></li>
-      </ul>
-    </div>
-    <p class="footer-copy">© 2026 PRCZ · Altitude Formation — Tous droits réservés</p>
-  </div>
-</footer>
+  </footer>
 
-<script src="script.js"></script>
+  <button id="backToTop" class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+    aria-label="Retour en haut">
+    ↑
+  </button>
+
+  <script src="script.js"></script>
 </body>
+
 </html>

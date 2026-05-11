@@ -37,30 +37,4 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-/* ── INTERSECTION OBSERVER — fade-in sections ── */
-const fadeEls = document.querySelectorAll(
-  '.marre-step, .bonus-card, .program-item, .notfor-item, .stat-row, .results-list li'
-);
 
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.15 });
-
-fadeEls.forEach((el, i) => {
-  el.style.opacity = '0';
-  el.style.transform = 'translateY(18px)';
-  el.style.transition = `opacity .45s ease ${i * 0.06}s, transform .45s ease ${i * 0.06}s`;
-  observer.observe(el);
-});
-
-document.addEventListener('DOMContentLoaded', () => {});
-
-/* Trigger visible class */
-document.head.insertAdjacentHTML('beforeend', `
-  <style>.visible { opacity: 1 !important; transform: none !important; }</style>
-`);
