@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ALTITUDE — Programme complet</title>
+<link rel="icon" type="image/png" href="favicon.png" />
+<link rel="apple-touch-icon" href="favicon.png" />
+<link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f0f7fc;
+  --white: #ffffff;
+  --black: #111111;
+  --orange: #e05a2b;
+  --blue: #3b82c4;
+  --blue-light: #dbeeff;
+  --blue-border: #b8d8f0;
+  --orange-light: #fff0e8;
+  --orange-border: #f0c4b8;
+  --green: #1a7a3c;
+  --green-light: #e8f7ee;
+  --purple: #7c3aed;
+  --purple-light: #ede9fe;
+  --red: #dc2626;
+  --red-light: #fef2f2;
+  --muted: #888;
+  --font: 'Montserrat', sans-serif;
+  --font2: 'Inter', sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #d4e8f5; font-family: var(--font); min-height: 100vh; padding: 32px 20px 60px; }
+.page { max-width: 920px; margin: 0 auto; }
+
+/* HEADER */
+.header { background: var(--black); border-radius: 20px; padding: 40px 48px; margin-bottom: 24px; position: relative; overflow: hidden; }
+.header::before { content: ''; position: absolute; top: -40px; right: -40px; width: 220px; height: 220px; background: var(--orange); border-radius: 50%; opacity: 0.08; }
+.header-label { font-size: 10px; font-weight: 800; letter-spacing: 4px; text-transform: uppercase; color: var(--orange); margin-bottom: 10px; }
+.header-title { font-size: clamp(32px, 4vw, 48px); font-weight: 900; color: #fff; line-height: 1.05; letter-spacing: -1px; margin-bottom: 10px; }
+.header-title .hl { color: var(--orange); }
+.header-sub { font-family: var(--font2); font-size: 15px; color: #aaa; line-height: 1.6; margin-bottom: 24px; max-width: 560px; }
+.header-stats { display: flex; gap: 32px; flex-wrap: wrap; }
+.header-stat { text-align: left; }
+.header-stat .val { font-size: 28px; font-weight: 900; color: #fff; line-height: 1; }
+.header-stat .val .o { color: var(--orange); }
+.header-stat .desc { font-family: var(--font2); font-size: 11px; color: #777; margin-top: 3px; }
+
+/* MARRE OVERVIEW */
+.marre-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 24px; }
+.marre-card { background: var(--white); border-radius: 14px; padding: 16px 14px; text-align: center; }
+.marre-letter { font-size: 36px; font-weight: 900; line-height: 1; margin-bottom: 4px; }
+.marre-word { font-size: 12px; font-weight: 800; color: var(--black); margin-bottom: 6px; letter-spacing: 0.5px; }
+.marre-desc { font-family: var(--font2); font-size: 10px; color: #666; line-height: 1.5; }
+
+/* MODULE SECTION */
+.module { background: var(--white); border-radius: 18px; margin-bottom: 16px; overflow: hidden; }
+.module-header { padding: 20px 28px 16px; display: flex; align-items: flex-start; gap: 16px; border-bottom: 1.5px solid var(--bg); }
+.module-icon { font-size: 28px; flex-shrink: 0; margin-top: 2px; }
+.module-meta { flex: 1; }
+.module-tag { font-size: 9px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 4px; }
+.module-title { font-size: clamp(16px, 2vw, 20px); font-weight: 900; color: var(--black); line-height: 1.2; margin-bottom: 6px; }
+.module-pitch { font-family: var(--font2); font-size: 12px; color: #555; line-height: 1.6; }
+.module-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+.pill { font-family: var(--font2); font-size: 10px; font-weight: 600; padding: 3px 10px; border-radius: 20px; }
+.pill.time { background: var(--bg); color: #555; }
+.pill.level { background: var(--blue-light); color: #1a3a5c; }
+.pill.level.inter { background: var(--orange-light); color: #6b2200; }
+.pill.level.adv { background: #fef2f2; color: #7f1d1d; }
+.pill.level.all { background: var(--green-light); color: #1a3a2a; }
+.pill.wip { background: #fef9c3; color: #713f12; }
+
+/* CHAPTERS */
+.chapters { padding: 0 28px 20px; }
+.ch-group-title { font-size: 9px; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; color: var(--muted); margin: 16px 0 10px; }
+.ch-list { display: flex; flex-direction: column; gap: 6px; }
+.ch-item { display: flex; gap: 12px; align-items: flex-start; padding: 10px 14px; background: var(--bg); border-radius: 10px; }
+.ch-num { font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700; color: var(--muted); min-width: 26px; flex-shrink: 0; padding-top: 1px; }
+.ch-body { flex: 1; }
+.ch-title { font-size: 12px; font-weight: 800; color: var(--black); margin-bottom: 3px; }
+.ch-desc { font-family: var(--font2); font-size: 10.5px; color: #666; line-height: 1.55; }
+.ch-tags { display: flex; gap: 6px; margin-top: 5px; flex-wrap: wrap; }
+.ch-tag { font-family: var(--font2); font-size: 9px; font-weight: 600; padding: 2px 7px; border-radius: 4px; background: var(--white); color: #888; border: 1px solid #ddd; }
+.ch-time { font-family: var(--font2); font-size: 9px; color: var(--muted); padding-top: 2px; flex-shrink: 0; }
+.deliverable-row { display: flex; gap: 8px; align-items: flex-start; margin-top: 4px; }
+.deliverable-label { font-family: var(--font2); font-size: 9px; font-weight: 700; color: var(--orange); text-transform: uppercase; letter-spacing: 1px; flex-shrink: 0; padding-top: 1px; }
+.deliverable-text { font-family: var(--font2); font-size: 10px; color: #444; line-height: 1.5; }
+
+/* FOOTER */
+.footer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 24px; }
+.footer-card { background: var(--white); border-radius: 14px; padding: 20px; }
+.footer-card-title { font-size: 12px; font-weight: 800; color: var(--black); margin-bottom: 8px; }
+.footer-card-text { font-family: var(--font2); font-size: 11px; color: #666; line-height: 1.6; }
+.prereq-item { display: flex; gap: 8px; align-items: flex-start; margin-bottom: 6px; font-family: var(--font2); font-size: 11px; color: #555; line-height: 1.5; }
+.prereq-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--orange); flex-shrink: 0; margin-top: 4px; }
+
+/* EVOLUTION BANNER */
+.evolution-banner { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border-radius: 14px; padding: 16px 24px; margin-bottom: 16px; display: flex; align-items: center; gap: 14px; border-left: 4px solid var(--orange); }
+.evolution-banner .evo-icon { font-size: 22px; flex-shrink: 0; }
+.evolution-banner .evo-text { flex: 1; }
+.evolution-banner .evo-title { font-size: 12px; font-weight: 800; color: #fff; margin-bottom: 3px; letter-spacing: 0.3px; }
+.evolution-banner .evo-desc { font-family: var(--font2); font-size: 11px; color: #aaa; line-height: 1.55; }
+.evolution-banner .evo-badge { background: var(--orange); color: #fff; font-size: 9px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; padding: 4px 10px; border-radius: 20px; flex-shrink: 0; }
+
+/* WIP MODULE */
+.module.wip-module { opacity: 0.85; }
+.wip-banner { background: #fef9c3; border: 1.5px solid #fde68a; border-radius: 8px; padding: 8px 14px; font-family: var(--font2); font-size: 11px; color: #713f12; font-weight: 600; margin: 12px 28px 0; }
+
+@media print {
+  body { background: #fff; padding: 16px; }
+  .header { background: var(--black) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .module { break-inside: avoid; }
+}
+
+/* ─── SHARED UI COMPONENTS ─── */
+nav {
+  position: sticky; top: 0; z-index: 1000;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 60px; background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(0,0,0,0.07);
+}
+.nav-logo { display: flex; align-items: center; }
+.nav-logo-img { height: 70px; width: auto; }
+.nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
+.nav-links a { color: #6b6b8a; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; text-decoration: none; transition: color .2s; }
+.nav-links a:hover { color: #111; }
+.btn-nav { 
+  background: linear-gradient(135deg, #4455ff 0%, #9933dd 50%, #cc44ee 100%);
+  color: #fff !important; padding: 12px 28px; border-radius: 100px;
+  font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;
+  box-shadow: 0 4px 14px rgba(100,60,220,0.2);
+}
+.nav-toggle { display: none; flex-direction: column; gap: 5px; width: 36px; height: 36px; cursor: pointer; background: none; border: none; }
+.nav-toggle span { display: block; height: 2px; border-radius: 2px; background: #111; transition: transform .3s, opacity .3s; }
+.nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+footer { background: #fff; padding: 60px 24px 40px; margin-top: 80px; border-top: 1px solid #eee; }
+.footer-inner { max-width: 920px; margin: 0 auto; }
+.footer-legal { font-size: 12px; color: #888; line-height: 1.6; margin-bottom: 40px; padding: 24px; background: #f9f9f9; border-radius: 12px; border-left: 3px solid #e05a2b; }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; padding-top: 30px; border-top: 1px solid #eee; }
+.footer-links { display: flex; gap: 24px; list-style: none; }
+.footer-links a { font-size: 12px; font-weight: 700; color: #666; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; }
+.footer-copy { font-size: 11px; color: #aaa; margin-top: 30px; text-align: center; }
+
+@media (max-width: 920px) {
+  nav { padding: 8px 24px; }
+  .nav-links { 
+    display: none; position: absolute; top: 100%; left: 0; right: 0; 
+    background: #fff; flex-direction: column; padding: 30px; gap: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+  .nav-links.open { display: flex; }
+  .nav-toggle { display: flex; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+  .footer-links { flex-direction: column; gap: 12px; }
+}
+</style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="logoaltitude.png" alt="ALTITUDE" class="nav-logo-img" />
+    </a>
+    <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="programme-altitude.html">Programme</a></li>
+      <li><a href="index.html#faq">FAQ</a></li>
+      <li><a href="https://altitude-business.systeme.io/altitude-ambassadeur" class="btn-nav">Rejoindre</a></li>
+    </ul>
+  </nav>
+
+<div class="page" style="margin-top: 40px;">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-label">✦ Altitude — Programme complet</div>
+    <h1 class="header-title">14h/semaine récupérées<br>en <span class="hl">30 jours.</span></h1>
+    <p class="header-sub">Pas une formation théorique. Une méthode opérationnelle construite sur ton vrai travail. À la fin, Claude n'est pas un onglet ouvert de temps en temps — c'est un collaborateur que tu sollicites chaque jour.</p>
+    <div class="header-stats">
+      <div class="header-stat"><div class="val">7<span class="o"> modules</span></div><div class="desc">Séquentiels — chacun construit sur le précédent</div></div>
+      <div class="header-stat"><div class="val">40<span class="o"> chapitres</span></div><div class="desc">Actions concrètes sur tes vraies tâches</div></div>
+      <div class="header-stat"><div class="val">1<span class="o"> seul outil</span></div><div class="desc">Claude Desktop + Claude Pro — rien d'autre</div></div>
+    </div>
+  </div>
+
+  <!-- MARRE OVERVIEW -->
+  <div class="marre-grid">
+    <div class="marre-card"><div class="marre-letter" style="color:var(--blue)">M</div><div class="marre-word">Micro Audit</div><div class="marre-desc">Cartographier où ton temps disparaît vraiment</div></div>
+    <div class="marre-card"><div class="marre-letter" style="color:var(--orange)">A</div><div class="marre-word">Analyse</div><div class="marre-desc">Prioriser, planifier, construire ta Roadmap 30 jours</div></div>
+    <div class="marre-card"><div class="marre-letter" style="color:var(--green)">R1</div><div class="marre-word">Réduction</div><div class="marre-desc">Déléguer les premières heures à Claude cette semaine</div></div>
+    <div class="marre-card"><div class="marre-letter" style="color:var(--red)">R2</div><div class="marre-word">Robotisation</div><div class="marre-desc">Brancher Claude sur tes outils — automatisation 100% auto</div></div>
+    <div class="marre-card"><div class="marre-letter" style="color:var(--purple)">E</div><div class="marre-word">Évaluation</div><div class="marre-desc">Mesurer, comparer, ancrer et préparer le cycle 2</div></div>
+  </div>
+
+  <!-- EVOLUTION BANNER -->
+  <div class="evolution-banner">
+    <div class="evo-icon">🔄</div>
+    <div class="evo-text">
+      <div class="evo-title">Programme en évolution continue</div>
+      <div class="evo-desc">Le contenu de chaque module évolue au fil des retours des membres. Nouveaux chapitres, prompts affinés, exemples enrichis — Altitude s'améliore avec chaque promotion.</div>
+    </div>
+    <div class="evo-badge">Live &amp; Évolutif</div>
+  </div>
+
+  <!-- MODULE 0 -->
+  <div class="module">
+    <div class="module-header">
+      <div class="module-icon">🟢</div>
+      <div class="module-meta">
+        <div class="module-tag" style="color:var(--green)">Module 0 — Fondations</div>
+        <div class="module-title">Comprends ce que tu as entre les mains</div>
+        <div class="module-pitch">Le point de départ. Tu installes Claude Desktop, tu comprends comment lui parler naturellement, et tu poses les fondations de ton espace de travail. À la fin : tu as eu ta première vraie conversation avec un résultat concret.</div>
+        <div class="module-pills">
+          <span class="pill level">🟢 Débutant</span>
+          <span class="pill time">4 chapitres</span>
+          <span class="pill time">Prérequis : aucun</span>
+        </div>
+      </div>
+    </div>
+    <div class="chapters">
+      <div class="ch-list">
+        <div class="ch-item">
+          <div class="ch-num">Ch 00</div>
+          <div class="ch-body">
+            <div class="ch-title">Installe Claude Desktop — ton environnement de travail</div>
+            <div class="ch-desc">Télécharger et configurer Claude Desktop (pas la version navigateur). Créer son compte et activer Claude Pro. Comprendre pourquoi l'app native est indispensable pour la suite de la formation.</div>
+            <div class="deliverable-row"><span class="deliverable-label">Livrable</span><span class="deliverable-text">Claude Desktop installé, compte Pro activé, première session ouverte.</span></div>
+          </div>
+        </div>
+        <div class="ch-item">
+          <div class="ch-num">Ch 01</div>
+          <div class="ch-body">
+            <div class="ch-title">Ce qu'est Claude — et ce qu'il n'est pas</div>
+            <div class="ch-desc">Démystifier l'IA sans jargon. Comprendre comment Claude traite l'information, ce qu'il peut faire seul et ce qui nécessite ta direction. Les 3 erreurs les plus fréquentes des nouveaux utilisateurs.</div>
+            <div class="deliverable-row"><span class="deliverable-label">Livrable</span><span class="deliverable-text">Clarté sur ce qu'on peut attendre de Claude — et ce qu'on ne peut pas.</span></div>
+          </div>
+        </div>
+        <div class="ch-item">
+          <div class="ch-num">Ch 02</div>
+          <div class="ch-body">
+            <div class="ch-title">Ta première conversation — comment lui parler naturellement</div>
+            <div class="ch-desc">Lancer sa première vraie conversation. Comprendre les Projets Claude (espace de travail persistant) et la mémoire entre sessions. Configurer son premier Projet ALTITUDE avec ses instructions de base.</div>
+            <div class="deliverable-row"><span class="deliverable-label">Livrable</span><span class="deliverable-text">Premier Projet Claude créé avec instructions personnalisées.</span></div>
+          </div>
+        </div>
+        <div class="ch-item">
+          <div class="ch-num">Ch 03</div>
+          <div class="ch-body">
+            <div class="ch-title">Pourquoi Claude oublie — comprendre les tokens sans jargon</div>
+            <div class="ch-desc">La fenêtre de contexte expliquée simplement. Pourquoi Claude "oublie" entre les conversations et comment anticiper ce comportement. Les bonnes pratiques pour ne jamais perdre son contexte.</div>
+            <div class="deliverable-row"><span class="deliverable-label">Livrable</span><span class="deliverable-text">Comprendre le comportement de Claude pour ne plus être surpris.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE M -->
+  <div class="module">
+    <div class="module-header">
+      <div class="module-icon">🔍</div>
+      <div class="module-meta">
+        <div class="module-tag" style="color:var(--blue)">Module M — Micro Audit</div>
+        <div class="module-title">Le vrai coût de travailler seul</div>
+        <div class="module-pitch">Tu ne remplis pas un formulaire — tu converses. Claude joue le rôle d'un journaliste et t'interviewe sur ta semaine. En 15 minutes, tu as un tableau complet de tes tâches classées D/P/H et tu sais exactement combien d'heures tu peux récupérer.</div>
+        <div class="module-pills">
+          <span class="pill level">🟢 Débutant</span>
+          <span class="pill time">2 chapitres</span>
+          <span class="pill time">Prérequis : Module 0</span>
+        </div>
+      </div>
+    </div>
+    <div class="chapters">
+      <div class="ch-list">
+        <div class="ch-item">
+          <div class="ch-num">Ch 08</div>
+          <div class="ch-body">
+            <div class="ch-title">Le vrai coût de travailler seul</div>
+            <div class="ch-desc">Comprendre les 3 catégories de tâches : D (Délégables à Claude), P (Procédurables — Claude suit une procédure), H (Humain uniquement — réflexion, relation, décision). Le concept de "charge mentale" comme coût invisible. Calcul du chiffre de départ : heures D + 50% des heures P.</div>
+            <div class="ch-tags"><span class="ch-tag">Tableau D/P/H</span><span class="ch-tag">Charge mentale</span><span class="ch-tag">Chiffre de départ</span></div>
+            <div class="deliverable-row"><span class="deliverable-label">Livrable</span><span class="deliverable-text">Comprendre pourquoi l'audit est la première étape non négociable.</span></div>
+          </div>
+        </div>
+        <div class="ch-item">
+          <div class="ch-num">Ch 09</div>
+          <div class="ch-body">
+            <div class="ch-title">Cartographier sa semaine avec Claude — Le prompt Journalist</div>
+            <div class="ch-desc">Claude joue le rôle d'un consultant-journaliste : il pose des questions structurées en 4 phases (ancrage mémoire → macro → micro → coûts cachés), relance les réponses vagues, et produit automatiquement le tableau D/P/H complet avec charge mentale, patterns récurrents et chiffre de départ. Minimum 20 minutes de conversation pour un audit profond.</div>
+            <div class="ch-tags"><span class="ch-tag">Prompt Journalist V2</span><span class="ch-tag">4 phases d'audit</span><span class="ch-tag">Tableau auto-généré</span><span class="ch-tag">Patterns identifiés</span></div>
+            <div class="deliverable-row"><span class="deliverable-label">Livrable</span><span class="deliverable-text">Tableau D/P/H complet de sa semaine + chiffre de départ calculé.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE A -->
+  <div class="module">
+    <div class="module-header">
+      <div class="module-icon">📊</div>
+      <div class="module-meta">
+        <div class="module-tag" style="color:var(--orange)">Module A — Analyse & Stratégie</div>
+        <div class="module-title">De l'audit à la cartographie</div>
+        <div class="module-pitch">Claude analyse ton audit comme un stratège externe. Il sélectionne les tâches à fort ROI, assigne à chacune la solution Claude la plus adaptée, génère ta Roadmap personnalisée sur 30 jours, et produit une Cartographie globale en PDF que tu sauvegardes dans ton Projet. À partir de là, Claude connaît ton plan avant chaque conversation.</div>
+        <div class="module-pills">
+          <span class="pill level inter">🟡 Intermédiaire</span>
+          <span class="pill time">3 chapitres</span>
+          <span class="pill time">Prérequis : Module M</span>
+        </div>
+      </div>
+    </div>
+    <div class="chapters">
+      <div class="ch-list">
+        <div class="ch-item">
+          <div class="ch-num">Ch 10</div>
+          <div class="ch-body">
+            <div class="ch-title">Analyse stratégique — Lis ton audit comme un stratège</div>
+            <div class="ch-desc">Claude sélectionne les meilleures tâches D et P selon impact/effort. Pour chaque tâche : formulation de la problématique métier en une phrase concrète + assignation de la solution Claude exacte (prompt SID · template réutilisable · Projet BRAIN + mémoire · skill · connecteur MCP · tâche planifiée · Claude Browser). Tableau final trié : toutes les D d'abord (setup le plus rapide au plus lent), puis toutes les P. Identification des 2-3 tâches H à ne jamais déléguer.</div>
+            <div class="ch-tags"><span class="ch-tag">Sélection D/P</span><span class="ch-tag">Solutions Claude</span><span class="ch-tag">Effort setup</span><span class="ch-tag">Tableau final trié</span></div>
+            <div class="deliverable-row"><span class="deliverable-label">Livrable</span><span class="deliverable-text">Tableau de sélection : tâche · problématique métier · solution Claude · effort setup.</span></div>
+          </div>
+        </div>
+        <div class="ch-item">
+          <div class="ch-num">Ch 11</div>
+          <div class="ch-body">
+            <div class="ch-title">Génère ta Roadmap 30 jours</div>
+            <div class="ch-desc">Claude génère une Roadmap dynamique sur mesure — pas un template à 4 semaines fixes. Séquencement : Phase D d'abord (setup le plus rapide au plus lent), puis Phase P. Cap strict : 3-4h de setup max par semaine, jamais deux chantiers complexes la même semaine. Pour chaque tâche : semaine d'implémentation, setup estimé en heures précises, impact récupéré. Ce qui dépasse 30 jours → "Prochain cycle M.A.R.R.E." Synthèse finale : bilan J+30, tâche prioritaire absolue, premier geste aujourd'hui.</div>
+            <div class="ch-tags"><span class="ch-tag">Roadmap dynamique</span><span class="ch-tag">Phase D → Phase P</span><span class="ch-tag">Cap 30 jours</span><span class="ch-tag">Prochain cycle</span></div>
+            <div class="deliverable-row"><span class="deliverable-label">Livrable</span><span class="deliverable-text">Roadmap personnalisée séquencée semaine par semaine avec impacts estimés.</span></div>
+          </div>
+        </div>
+        <div class="ch-item">
+          <div class="ch-num">Ch 12</div>
+          <div class="ch-body">
+            <div class="ch-title">Sauvegarde ta Cartographie globale</div>
+            <div class="ch-desc">Claude génère en un seul prompt la Cartographie Globale complète : profil de travail · audit D/P/H complet · sélection + solutions Claude · roadmap personnalisée · indicateurs de suivi · premier geste. Le tout en markdown propre ET en PDF mis en page (titre de couverture, sections visuelles, tableaux formatés, indicateurs mis en valeur). Ce PDF se colle dans les instructions du Projet ALTITUDE — Claude le lit avant chaque conversation.</div>
+            <div class="ch-tags"><span class="ch-tag">Cartographie PDF</span><span class="ch-tag">Document de référence</span><span class="ch-tag">Projet ALTITUDE</span><span class="ch-tag">Mise à jour J+30</span></div>
+            <div class="deliverable-row"><span class="deliverable-label">Livrable</span><span class="deliverable-text">PDF Cartographie Globale à sauvegarder dans les instructions du Projet Claude.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE R1 -->
+  <div class="module">
+    <div class="module-header">
+      <div class="module-icon">⚡</div>
+      <div class="module-meta">
+        <div class="module-tag" style="color:var(--green)">Module R1 — Réduction</div>
+        <div class="module-title">Tes premières heures récupérées. Cette semaine.</div>
+        <div class="module-pitch">Tu délègues les premières heures cette semaine. Tu apprends la méthode SID pour obtenir le bon résultat du premier coup, tu construis le dossier BRAIN qui donne ta voix à Claude, et tu configures tes premiers Skills — des procédures sauvegardées que Claude exécute d'un seul mot.</div>
+        <div class="module-pills">
+          <span class="pill level inter">🟡 Intermédiaire</span>
+          <span class="pill time">9 chapitres</span>
+          <span class="pill time">Prérequis : Module A</span>
+        </div>
+      </div>
+    </div>
+    <div class="chapters">
+      <div class="ch-group-title">Bloc 1 — La méthode SID + Templates</div>
+      <div class="ch-list">
+        <div class="ch-item">
+          <div class="ch-num">Ch 15</div>
+          <div class="ch-body">
+            <div class="ch-title">Écrire un prompt SID parfait</div>
+            <div class="ch-desc">La méthode SID (Situation · Intention · Détails) — pas une formule magique, une manière de penser sa demande avant de l'écrire. S = qui tu es, ton contexte ; I = l'objectif précis, pas "aide-moi" ; D = contraintes, format, ton, exclusions. Démonstration comparée : même tâche avec et sans SID. SID élimine l'aller-retour interminable — bon résultat du premier coup.</div>
+            <div class="ch-tags"><span class="ch-tag">Méthode SID</span><span class="ch-tag">Situation</span><span class="ch-tag">Intention</span><span class="ch-tag">Détails</span></div>
+            <div class="deliverable-row"><span class="deliverable-label">Livrable</span><span class="deliverable-text">Template SID universel à conserver dans son Projet Claude.</span></div>
+          </div>
+        </div>
+        <div class="ch-item">
+          <div class="ch-num">Ch 16</div>
+          <div class="ch-body">
+            <div class="ch-title">Créer son premier template de prompt</div>
+            <div class="ch-desc">Un bon prompt prend du temps à écrire — il faut le réutiliser. Un template = un prompt SID avec des [variables] à remplacer. Logique de construction, exemples pratiques (email de suivi prospect, compte-rendu, brief). Où stocker ses templates (Projet Claude, fichier BRAIN, note). Challenge : créer 3 templates pour ses 3 tâches les plus récurrentes.</div>
+            <div class="ch-tags"><span class="ch-tag">Templates réutilisables</span><span class="ch-tag">[Variables]</span><span class="ch-tag">Bibliothèque de briefs</span></div>
+            <div class="deliverable-row"><span class="deliverable-label">Livrable</span><span class="deliverable-text">3 templates SID personnalisés pour ses 3 tâches les plus fréquentes.</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="ch-group-title">Bloc 2 — Projets · BRAIN · Mémoire</div>
+      <div class="ch-list">
+        <div class="ch-item">
+          <div class="ch-num">Ch 17</div>
+          <div class="ch-body">
+            <div class="ch-title">Introduction aux Projets Claude</div>
+            <div class="ch-desc">Claude par défaut = conversation sans mémoire. Les Projets règlent ce problème : espace de travail persistant avec mémoire partagée entre toutes les conversations du projet. Différence visuelle en direct : conversation classique vs Projet. Cas d'usage : un Projet par client, par chantier IA, "ALTITUDE — Mon parcours". Ce qu'on peut mettre dans un Projet : instructions persistantes, documents de référence, historique des décisions.</div>
+            <div class="ch-tags"><span class="ch-tag">Projets Claude</span><span class="ch-tag">Mémoire persistante</span><span class="ch-tag">Instructions système</span></div>
+            <div class="deliverable-row"><span class="deliverable-label">Livrable</span><span class="deliverable-text">Son Projet Claude "ALTITUDE — Mon parcours" configuré avec instructions de base.</span></div>
+          </div>
+        </div>
+        <div class="ch-item">
+          <div class="ch-num">Ch 18</div>
+          <div class="ch-body">
+            <div class="ch-title">Charger son contexte avec le dossier BRAIN</div>
+            <div class="ch-desc">Le dossier BRAIN : un dossier sur son ordinateur que Claude lit au début de chaque session Cowork. Il est sur ton ordinateur — pas dans le cloud. Flux Cowork : Claude lit automatiquement le dossier ABOUT ME et est immédiatement opérationnel. Analogie : un collaborateur qui a lu ton dossier RH avant de commencer. Présentation des 3 fichiers clés : profil.md · offres.md · style.md.</div>
+            <div class="ch-tags"><span class="ch-tag">Dossier BRAIN</span><span class="ch-tag">ABOUT ME</span><span class="ch-tag">Claude Cowork</span><span class="ch-tag">Contexte auto</span></div>
+            <div class="deliverable-row"><span class="deliverable-label">Livrable</span><span class="deliverable-text">Structure du dossier BRAIN/ABOUT ME créée sur son ordinateur.</span></div>
+          </div>
+        </div>
+        <div class="ch-item">
+          <div class="ch-num">Ch 19</div>
+          <div class="ch-body">
+            <div class="ch-title">Créer profil.md · offres.md · style.md</div>
+            <div class="ch-desc">Les 3 fichiers qui donnent ta voix à Claude. profil.md : qui tu es professionnellement (métier, clients, outils, niveau IA). offres.md : ce que tu vends (offres, tarifs, arguments, promesses clients). style.md : comment tu communiques (ton, mots favoris, exclusions, extraits de vrais écrits). Astuce : utiliser Claude pour t'aider à rédiger tes propres fichiers — il pose les bonnes questions. Démo finale : charge les 3 fichiers et montre comment Claude répond différemment.</div>
+            <div class="ch-tags"><span class="ch-tag">profil.md</span><span class="ch-tag">offres.md</span><span class="ch-tag">style.md</span><span class="ch-tag">Voix personnelle</span></div>
+            <div class="deliverable-row"><span class="deliverable-label">Livrable</span><span class="deliverable-text">Les 3 fichiers remplis et sauvegardés dans BRAIN/ABOUT ME/</span></div>
+          </div>
+        </div>
+        <div class="ch-item">
+          <div class="ch-num">Ch 20</div>
+          <div class="ch-body">
+            <div class="ch-title">Comprendre les tokens et la fenêtre de contexte</div>
+            <div class="ch-desc">Ce que sont les tokens sans jargon technique. Pourquoi la fenêtre de contexte a une limite et ce que ça implique concrètement. Comment ne pas surcharger son Projet avec des documents trop lourds. Bonnes pratiques : ce qu'on met dans les instructions vs ce qu'on charge à la demande.</div>
+            <div class="ch-tags"><span class="ch-tag">Tokens</span><span class="ch-tag">Contexte</span><span class="ch-tag">Limites</span></div>
+            <div class="deliverable-row"><span class="deliverable-label">Livrable</span><span class="deliverable-text">Comprendre comment optimiser son espace de contexte.</span></div>
+          </div>
+        </div>
+        <div class="ch-item">
+          <div class="ch-num">Ch 21</div>
+          <div class="ch-body">
+            <div class="ch-title">Utiliser la mémoire Claude</div>
+            <div class="ch-desc">La Mémoire Claude = des post-its permanents sur toi, actifs dans toutes tes conversations. Différence Mémoire / Projet / BRAIN : Mémoire = universel et permanent · Projet = spécifique à un chantier · BRAIN = chargé à la demande. Exemples de mémorisations clés : langue de travail, préférences de format, style de réponse, contexte professionnel. Comment demander à Claude de mémoriser en direct.</div>
+            <div class="ch-tags"><span class="ch-tag">Mémoire persistante</span><span class="ch-tag">Préférences universelles</span><span class="ch-tag">Post-its permanents</span></div>
+            <div class="deliverable-row"><span class="deliverable-label">Livrable</span><span class="deliverable-text">Au moins 3 mémorisations clés configurées dans Claude.</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="ch-group-title">Bloc 3 — Skills Claude</div>
+      <div class="ch-list">
+        <div class="ch-item">
+          <div class="ch-num">Ch 22</div>
+          <div class="ch-body">
+            <div class="ch-title">Introduction aux Skills</div>
+            <div class="ch-desc">Les Skills = des procédures pré-configurées qu'on appelle dans Cowork pour exécuter une tâche complexe d'un seul ordre. Analogie : plutôt que de réexpliquer comment faire un compte-rendu à chaque fois, on crée une fiche procédure que Claude suit automatiquement. Différence Skill vs Prompt : un prompt s'écrit à chaque fois, un Skill est configuré une fois et disponible partout. Exemples : post LinkedIn, compte-rendu, brief client, analyse de document.</div>
+            <div class="ch-tags"><span class="ch-tag">Skills Cowork</span><span class="ch-tag">Procédures sauvegardées</span><span class="ch-tag">Automatisation</span></div>
+            <div class="deliverable-row"><span class="deliverable-label">Livrable</span><span class="deliverable-text">Identifier ses 3 tâches candidates à "skillifier" avant le prochain chapitre.</span></div>
+          </div>
+        </div>
+        <div class="ch-item">
+          <div class="ch-num">Ch 23</div>
+          <div class="ch-body">
+            <div class="ch-title">Configurer son premier Skill</div>
+            <div class="ch-desc">En pratique : créer un Skill dans Cowork de A à Z. Définir le déclencheur, l'entrée attendue, la sortie produite et la logique d'exécution complète. Test en direct sur une vraie tâche. Mesurer le temps gagné entre "prompt à écrire à chaque fois" et "Skill appelé d'un mot". Action finale : mesurer les heures récupérées à l'issue du Module R1.</div>
+            <div class="ch-tags"><span class="ch-tag">Configuration Skill</span><span class="ch-tag">Déclencheur</span><span class="ch-tag">Test en direct</span><span class="ch-tag">Mesure gains</span></div>
+            <div class="deliverable-row"><span class="deliverable-label">Livrable</span><span class="deliverable-text">Premier Skill configuré et testé sur une vraie tâche récurrente.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE R2 -->
+  <div class="module">
+    <div class="module-header">
+      <div class="module-icon">🤖</div>
+      <div class="module-meta">
+        <div class="module-tag" style="color:var(--red)">Module R2 — Robotisation</div>
+        <div class="module-title">Ton système tourne sans toi. 100% automatique.</div>
+        <div class="module-pitch">Tu configures Cowork pour que les tâches récurrentes s'exécutent 100% automatiquement — sans toi, à heure fixe. Tu connectes Claude à tes outils via les connecteurs MCP. Les tâches planifiées tournent en autonomie complète. Claude Browser agit sur le web à ta place. Tu sors du module avec un système de délégation qui fonctionne même quand tu dors.</div>
+        <div class="module-pills">
+          <span class="pill level adv">🔴 Intermédiaire → Avancé</span>
+          <span class="pill time">13 chapitres</span>
+          <span class="pill time">Prérequis : Module R1</span>
+        </div>
+      </div>
+    </div>
+    <div class="chapters">
+      <div class="ch-group-title">Bloc 1 — Connecteurs MCP</div>
+      <div class="ch-list">
+        <div class="ch-item">
+          <div class="ch-num">Ch 24</div>
+          <div class="ch-body">
+            <div class="ch-title">Introduction aux connecteurs MCP</div>
+            <div class="ch-desc">Ce que sont les connecteurs MCP : des ponts entre Claude et tes outils. Claude peut lire et écrire dans Gmail, Calendar, Notion, ClickUp, Slack… sans changer d'onglet. Installation et configuration dans Cowork. Les connecteurs disponibles et comment les activer. La différence entre "consulter Claude sur tes emails" et "Claude qui gère tes emails directement".</div>
+            <div class="ch-tags"><span class="ch-tag">MCP</span><span class="ch-tag">Connecteurs</span><span class="ch-tag">Intégrations</span></div>
+            <div class="deliverable-row"><span class="deliverable-label">Livrable</span><span class="deliverable-text">Premier connecteur installé et testé dans Cowork.</span></div>
+          </div>
+        </div>
+        <div class="ch-item">
+          <div class="ch-num">Ch 25</div>
+          <div class="ch-body">
+            <div class="ch-title">Connecter Gmail à Claude</div>
+            <div class="ch-desc">Configuration du connecteur Gmail dans Cowork. Claude lit tes emails, les résume, les classe, identifie les actions à faire. Démo en direct : "quels emails nécessitent une réponse aujourd'hui ?" Claude lit et présente un résumé actionnable.</div>
+            <div class="ch-tags"><span class="ch-tag">Gmail MCP</span><span class="ch-tag">Lecture emails</span><span class="ch-tag">Tri automatique</span></div>
+            <div class="deliverable-row"><span class="deliverable-label">Livrable</span><span class="deliverable-text">Gmail connecté · première lecture et résumé de boîte de réception.</span></div>
+          </div>
+        </div>
+        <div class="ch-item">
+          <div class="ch-num">Ch 26</div>
+          <div class="ch-body">
+            <div class="ch-title">Automatiser sa gestion d'emails</div>
+            <div class="ch-desc">Aller plus loin : Claude rédige les réponses à ta place, dans ton style.md. Créer un workflow de traitement d'emails récurrents (relances, confirmations, suivis). Configurer une routine de tri hebdomadaire automatique. Mesurer le temps récupéré sur la gestion de boîte.</div>
+            <div class="ch-tags"><span class="ch-tag">Rédaction emails</span><span class="ch-tag">Style personnel</span><span class="ch-tag">Workflow emails</span></div>
+            <div class="deliverable-row"><span class="deliverable-label">Livrable</span><span class="deliverable-text">Workflow de gestion emails automatisé selon son style de communication.</span></div>
+          </div>
+        </div>
+        <div class="ch-item">
+          <div class="ch-num">Ch 27</div>
+          <div class="ch-body">
+            <div class="ch-title">Connecter Google Calendar</div>
+            <div class="ch-desc">Configuration du connecteur Calendar. Claude lit ton agenda, identifie les conflits, les créneaux disponibles, les réunions à préparer. Vue d'ensemble de la semaine en une question.</div>
+            <div class="ch-tags"><span class="ch-tag">Calendar MCP</span><span class="ch-tag">Lecture agenda</span></div>
+            <div class="deliverable-row"><span class="deliverable-label">Livrable</span><span class="deliverable-text">Calendar connecté · résumé de la semaine généré automatiquement.</span></div>
+          </div>
+        </div>
+        <div class="ch-item">
+          <div class="ch-num">Ch 28</div>
+          <div class="ch-body">
+            <div class="ch-title">Piloter son agenda avec Claude</div>
+            <div class="ch-desc">Claude crée des événements, propose des créneaux, prépare les briefs de réunion à l'avance. Automatiser la préparation des rendez-vous clients : Claude lit l'événement, récupère le contexte, produit un brief de 10 lignes la veille.</div>
+            <div class="ch-tags"><span class="ch-tag">Création événements</span><span class="ch-tag">Brief réunion auto</span><span class="ch-tag">Préparation RDV</span></div>
+            <div class="deliverable-row"><span class="deliverable-label">Livrable</span><span class="deliverable-text">Workflow de préparation automatique des réunions configuré.</span></div>
+          </div>
+        </div>
+        <div class="ch-item">
+          <div class="ch-num">Ch 29</div>
+          <div class="ch-body">
+            <div class="ch-title">Connecter Notion ou ClickUp</div>
+            <div class="ch-desc">Configuration du connecteur Notion ou ClickUp selon l'outil utilisé. Claude lit les projets, les tâches, les statuts. Créer des tâches depuis Claude sans ouvrir l'application. Mise à jour de statuts automatique.</div>
+            <div class="ch-tags"><span class="ch-tag">Notion MCP</span><span class="ch-tag">ClickUp MCP</span><span class="ch-tag">Gestion projets</span></div>
+            <div class="deliverable-row"><span class="deliverable-label">Livrable</span><span class="deliverable-text">Notion ou ClickUp connecté · première interaction depuis Claude.</span></div>
+          </div>
+        </div>
+        <div class="ch-item">
+          <div class="ch-num">Ch 30</div>
+          <div class="ch-body">
+            <div class="ch-title">Gérer ses projets depuis Claude</div>
+            <div class="ch-desc">Piloter son backlog sans changer d'onglet. Claude lit les tâches en retard, résume l'avancement des projets, crée des comptes-rendus de session. Créer une revue de projet hebdomadaire automatique : Claude lit le Notion/ClickUp et produit un résumé des blocages et priorités.</div>
+            <div class="ch-tags"><span class="ch-tag">Revue projet auto</span><span class="ch-tag">Backlog</span><span class="ch-tag">Compte-rendu</span></div>
+            <div class="deliverable-row"><span class="deliverable-label">Livrable</span><span class="deliverable-text">Revue de projet hebdomadaire automatisée depuis Claude.</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="ch-group-title">Bloc 2 — Tâches planifiées (100% automatique)</div>
+      <div class="ch-list">
+        <div class="ch-item">
+          <div class="ch-num">Ch 31</div>
+          <div class="ch-body">
+            <div class="ch-title">Introduction aux tâches planifiées</div>
+            <div class="ch-desc">Les tâches planifiées dans Cowork : des actions que Claude exécute à heure fixe, sans que tu sois présent. Différence entre "demander à Claude de faire quelque chose" et "Claude qui fait automatiquement à 8h chaque lundi". Cas d'usage : briefing du matin, résumé de boîte email, revue d'agenda de la semaine, rapport hebdomadaire.</div>
+            <div class="ch-tags"><span class="ch-tag">Tâches planifiées</span><span class="ch-tag">100% auto</span><span class="ch-tag">Heure fixe</span></div>
+            <div class="deliverable-row"><span class="deliverable-label">Livrable</span><span class="deliverable-text">Comprendre quelles tâches se prêtent à la planification automatique.</span></div>
+          </div>
+        </div>
+        <div class="ch-item">
+          <div class="ch-num">Ch 32</div>
+          <div class="ch-body">
+            <div class="ch-title">Créer sa première tâche planifiée</div>
+            <div class="ch-desc">Configurer une tâche planifiée dans Cowork de A à Z : choisir le déclencheur (heure, fréquence), écrire le prompt de la tâche, tester l'exécution. Exemple fil rouge : briefing du lundi matin — Claude lit l'agenda de la semaine, les emails non traités, les priorités du Notion, et envoie un résumé automatique chaque lundi à 8h.</div>
+            <div class="ch-tags"><span class="ch-tag">Configuration Scheduled</span><span class="ch-tag">Briefing lundi</span><span class="ch-tag">Déclencheur cron</span></div>
+            <div class="deliverable-row"><span class="deliverable-label">Livrable</span><span class="deliverable-text">Première tâche planifiée opérationnelle — briefing ou résumé hebdomadaire automatique.</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="ch-group-title">Bloc 3 — Claude Browser</div>
+      <div class="ch-list">
+        <div class="ch-item">
+          <div class="ch-num">Ch 33</div>
+          <div class="ch-body">
+            <div class="ch-title">Introduction à Claude Browser (Claude in Chrome)</div>
+            <div class="ch-desc">Claude Browser = Claude qui agit sur le web à ta place. Il navigue, lit des pages, extrait des informations, remplit des formulaires. Installation de l'extension Claude in Chrome. Cas d'usage : veille sectorielle, extraction de données, recherche de prospects, lecture de pages concurrentes.</div>
+            <div class="ch-tags"><span class="ch-tag">Claude Browser</span><span class="ch-tag">Claude in Chrome</span><span class="ch-tag">Actions web</span></div>
+            <div class="deliverable-row"><span class="deliverable-label">Livrable</span><span class="deliverable-text">Extension Claude in Chrome installée et première action web exécutée.</span></div>
+          </div>
+        </div>
+        <div class="ch-item">
+          <div class="ch-num">Ch 34</div>
+          <div class="ch-body">
+            <div class="ch-title">Automatiser sa veille avec Claude Browser</div>
+            <div class="ch-desc">Construire un système de veille automatique : Claude Browser visite des sources définies, extrait les informations pertinentes, les résume selon tes critères. Exemple : veille LinkedIn sur son secteur, lecture des newsletters, extraction de données de pages web récurrentes. Combiner Claude Browser + tâche planifiée pour une veille 100% automatique.</div>
+            <div class="ch-tags"><span class="ch-tag">Veille automatique</span><span class="ch-tag">Extraction données</span><span class="ch-tag">Résumé auto</span></div>
+            <div class="deliverable-row"><span class="deliverable-label">Livrable</span><span class="deliverable-text">Système de veille automatique configuré sur ses sources prioritaires.</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="ch-group-title">Bloc 4 — Système complet + Revue</div>
+      <div class="ch-list">
+        <div class="ch-item">
+          <div class="ch-num">Ch 35</div>
+          <div class="ch-body">
+            <div class="ch-title">Construire son système de délégation complet</div>
+            <div class="ch-desc">Assembler tous les éléments en un système cohérent : connecteurs MCP + tâches planifiées + Claude Browser + Skills R1. Mapper chaque tâche de sa roadmap sur le bon outil. Créer les rituels quotidiens et hebdomadaires. Le système tourne sans toi — tu supervises, tu n'exécutes plus.</div>
+            <div class="ch-tags"><span class="ch-tag">Système complet</span><span class="ch-tag">Rituels auto</span><span class="ch-tag">Supervision</span></div>
+            <div class="deliverable-row"><span class="deliverable-label">Livrable</span><span class="deliverable-text">Système de délégation complet assemblé et documenté dans la Cartographie.</span></div>
+          </div>
+        </div>
+        <div class="ch-item">
+          <div class="ch-num">Ch 36</div>
+          <div class="ch-body">
+            <div class="ch-title">Revue mi-parcours et ajustements</div>
+            <div class="ch-desc">Point de contrôle à mi-chemin des 30 jours. Comparer ce qui a été mis en place avec la roadmap initiale. Identifier ce qui fonctionne, ce qui coince, ce qui doit être ajusté. Mise à jour de la Cartographie Globale avec les ajustements.</div>
+            <div class="ch-tags"><span class="ch-tag">Revue mi-parcours</span><span class="ch-tag">Ajustements</span><span class="ch-tag">Mise à jour Cartographie</span></div>
+            <div class="deliverable-row"><span class="deliverable-label">Livrable</span><span class="deliverable-text">Cartographie mise à jour avec les réalités du terrain à J+15.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE E -->
+  <div class="module">
+    <div class="module-header">
+      <div class="module-icon">📈</div>
+      <div class="module-meta">
+        <div class="module-tag" style="color:var(--purple)">Module E — Évaluation</div>
+        <div class="module-title">Mesure ce que tu as récupéré. Prépare le cycle 2.</div>
+        <div class="module-pitch">Tu mesures. Tu compares ton audit initial avec la réalité à J+30. Tu calcules ton ROI en heures et en valeur. Tu identifies les prochains chantiers, tu mets à jour ton dossier BRAIN, et tu prépares le deuxième cycle M.A.R.R.E. La méthode continue après la formation.</div>
+        <div class="module-pills">
+          <span class="pill level all">🟢 Tous niveaux</span>
+          <span class="pill time">4 chapitres</span>
+          <span class="pill time">Prérequis : Module R2</span>
+        </div>
+      </div>
+    </div>
+    <div class="chapters">
+      <div class="ch-list">
+        <div class="ch-item">
+          <div class="ch-num">Ch 37</div>
+          <div class="ch-body">
+            <div class="ch-title">Mesurer ses gains réels</div>
+            <div class="ch-desc">Refaire l'audit D/P/H avec Claude 30 jours après. Méthode de mesure objective : comparer les heures passées sur chaque tâche avant/après. Calculer les heures récupérées réellement — pas les estimées, les mesurées. Identifier les écarts entre la roadmap et la réalité.</div>
+            <div class="ch-tags"><span class="ch-tag">Audit J+30</span><span class="ch-tag">Mesure objective</span><span class="ch-tag">Avant/Après</span></div>
+            <div class="deliverable-row"><span class="deliverable-label">Livrable</span><span class="deliverable-text">Nouveau tableau D/P/H J+30 comparé à l'audit initial.</span></div>
+          </div>
+        </div>
+        <div class="ch-item">
+          <div class="ch-num">Ch 38</div>
+          <div class="ch-body">
+            <div class="ch-title">Comparer avec son chiffre de départ</div>
+            <div class="ch-desc">Calculer son ROI réel : heures récupérées × valeur horaire. Comparer le chiffre de départ (calculé au Module M) avec le chiffre J+30. Valoriser les gains en €/an (gains hebdo × 50 semaines × TJM). Identifier pourquoi certaines tâches ont sur- ou sous-performé les estimations.</div>
+            <div class="ch-tags"><span class="ch-tag">ROI calculé</span><span class="ch-tag">Valorisation €</span><span class="ch-tag">Chiffre J+30</span></div>
+            <div class="deliverable-row"><span class="deliverable-label">Livrable</span><span class="deliverable-text">Calcul ROI complet : heures récupérées · valeur horaire · gain annuel estimé.</span></div>
+          </div>
+        </div>
+        <div class="ch-item">
+          <div class="ch-num">Ch 39</div>
+          <div class="ch-body">
+            <div class="ch-title">Identifier les prochains chantiers</div>
+            <div class="ch-desc">Relire le "Prochain cycle M.A.R.R.E." constitué au Module A. Identifier les tâches qui n'ont pas encore été traitées. Repérer de nouvelles tâches D/P qui ont émergé sur les 30 jours. Mettre à jour la Cartographie Globale avec ce nouveau cycle.</div>
+            <div class="ch-tags"><span class="ch-tag">Prochain cycle</span><span class="ch-tag">Nouveaux chantiers</span><span class="ch-tag">Mise à jour Cartographie</span></div>
+            <div class="deliverable-row"><span class="deliverable-label">Livrable</span><span class="deliverable-text">Liste des chantiers du cycle 2 priorisés et intégrés à la Cartographie.</span></div>
+          </div>
+        </div>
+        <div class="ch-item">
+          <div class="ch-num">Ch 40</div>
+          <div class="ch-body">
+            <div class="ch-title">Ton système dans 90 jours</div>
+            <div class="ch-desc">Ancrer les nouvelles habitudes : les rituels quotidiens et hebdomadaires avec Claude. Comment maintenir le système sans y penser. Préparer le cycle 2 : relancer M.A.R.R.E. sur les tâches restantes. La méthode devient un réflexe — pas une procédure à suivre. Vision 90 jours : ce que le système produit quand il tourne depuis 3 mois.</div>
+            <div class="ch-tags"><span class="ch-tag">Habitudes ancrées</span><span class="ch-tag">Rituels auto</span><span class="ch-tag">Cycle 2</span><span class="ch-tag">Vision 90 jours</span></div>
+            <div class="deliverable-row"><span class="deliverable-label">Livrable</span><span class="deliverable-text">Rituels hebdomadaires configurés · Cycle 2 planifié · Cartographie finale sauvegardée.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-grid">
+    <div class="footer-card">
+      <div class="footer-card-title">📋 Les 3 règles du jeu</div>
+      <div class="prereq-item"><div class="prereq-dot"></div><div><strong>Tes vraies tâches, pas des exercices fictifs.</strong> Chaque module s'applique sur ton travail de la semaine. C'est ça qui crée le résultat.</div></div>
+      <div class="prereq-item"><div class="prereq-dot"></div><div><strong>Dans l'ordre, sans sauter d'étape.</strong> Chaque module construit sur le précédent. Automatiser sans audit, ça ne marche pas.</div></div>
+      <div class="prereq-item"><div class="prereq-dot"></div><div><strong>Valider avant de passer.</strong> Chaque module a une action de fin. Tu la fais — tu passes. C'est ce qui transforme une formation en changement durable.</div></div>
+    </div>
+    <div class="footer-card">
+      <div class="footer-card-title">⚙️ Ce qu'il te faut</div>
+      <div class="prereq-item"><div class="prereq-dot"></div><div><strong>Claude Desktop</strong> — l'app native, pas le navigateur web. Obligatoire pour les Projets, la mémoire et Cowork.</div></div>
+      <div class="prereq-item"><div class="prereq-dot"></div><div><strong>Claude Pro</strong> — 20$/mois. Débloque les Projets, l'usage intensif et l'accès aux connecteurs.</div></div>
+      <div class="prereq-item"><div class="prereq-dot"></div><div><strong>Aucune compétence technique.</strong> La méthode est conçue pour des professionnels — pas des développeurs.</div></div>
+    </div>
+    <div class="footer-card">
+      <div class="footer-card-title">🎯 Ce que tu auras à la fin</div>
+      <div class="footer-card-text">Un collaborateur IA configuré sur ton profil, tes outils et tes tâches. Une Cartographie Globale qui grandit avec toi. Des systèmes qui tournent sans toi à heure fixe. Une méthode que tu peux continuer à appliquer seul — cycle après cycle — bien après la formation.</div>
+    </div>
+  </div>
+
+</div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-legal">
+        <strong>⚠️ Avertissement légal</strong>
+        La formation Altitude a été conçue à des fins strictement pédagogiques. Les résultats présentés sont issus d'expériences réelles mais ne constituent pas une garantie de résultats identiques.
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-logo"><img src="logoaltitude.png" alt="Altitude" style="height:40px;"></div>
+        <ul class="footer-links">
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="programme-altitude.html">Programme</a></li>
+          <li><a href="cgv.html">CGV</a></li>
+          <li><a href="mailto:noe@prcz.fr">Contact</a></li>
+        </ul>
+      </div>
+      <p class="footer-copy">© 2026 PRCZ · Altitude Formation · Tous droits réservés</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
