@@ -112,6 +112,27 @@ body { background: #d4e8f5; font-family: var(--font); min-height: 100vh; padding
   .module { break-inside: avoid; }
 }
 
+/* ─── ECOSYSTEM SECTION ─── */
+.ecosystem { margin-top: 48px; margin-bottom: 32px; }
+.eco-title { font-size: clamp(20px, 3vw, 28px); font-weight: 900; color: var(--black); margin-bottom: 24px; text-align: center; }
+.eco-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.eco-card { background: var(--white); border-radius: 20px; padding: 32px; border: 1.5px solid var(--blue-border); position: relative; transition: transform 0.3s ease; }
+.eco-card:hover { transform: translateY(-4px); }
+.eco-card.coaching { border-color: var(--orange-border); }
+.eco-icon { font-size: 36px; margin-bottom: 16px; display: block; }
+.eco-label { font-size: 9px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: var(--blue); margin-bottom: 10px; }
+.eco-card.coaching .eco-label { color: var(--orange); }
+.eco-card h3 { font-size: 20px; font-weight: 900; color: var(--black); margin-bottom: 12px; line-height: 1.2; }
+.eco-text { font-family: var(--font2); font-size: 13px; color: #555; line-height: 1.6; }
+.eco-list { margin-top: 20px; list-style: none; }
+.eco-list li { position: relative; padding-left: 24px; font-family: var(--font2); font-size: 12px; color: #666; margin-bottom: 10px; line-height: 1.5; }
+.eco-list li::before { content: '✦'; position: absolute; left: 0; color: var(--blue); font-weight: 800; }
+.eco-card.coaching .eco-list li::before { color: var(--orange); }
+
+@media (max-width: 768px) {
+  .eco-grid { grid-template-columns: 1fr; }
+}
+
 /* ─── SHARED UI COMPONENTS ─── */
 nav {
   position: sticky; top: 0; z-index: 1000;
@@ -659,6 +680,36 @@ footer { background: #fff; padding: 60px 24px 40px; margin-top: 80px; border-top
             <div class="deliverable-row"><span class="deliverable-label">Livrable</span><span class="deliverable-text">Rituels hebdomadaires configurés · Cycle 2 planifié · Cartographie finale sauvegardée.</span></div>
           </div>
         </div>
+      </div>
+    </div>
+  <!-- ECOSYSTEM -->
+  <div class="ecosystem">
+    <h2 class="eco-title">L'écosystème Altitude : Bien plus qu'une formation</h2>
+    <div class="eco-grid">
+      <!-- COMMUNITY -->
+      <div class="eco-card">
+        <span class="eco-icon">👥</span>
+        <div class="eco-label">Pilier Communautaire</div>
+        <h3>La Communauté<br>Privée Altitude</h3>
+        <p class="eco-text">Un accès privilégié à un réseau d'entrepreneurs qui partagent la même ambition de productivité radicale.</p>
+        <ul class="eco-list">
+          <li><strong>Accès 24h/24 pendant un an</strong> à l'espace membre privé.</li>
+          <li><strong>Échanges quotidiens</strong> entre membres pour partager cas d'usage, découvertes et réussites.</li>
+          <li><strong>Soutien direct</strong> : Noé répond personnellement à toutes vos questions au quotidien pour débloquer vos situations.</li>
+        </ul>
+      </div>
+
+      <!-- COACHING -->
+      <div class="eco-card coaching">
+        <span class="eco-icon">🎯</span>
+        <div class="eco-label">Pilier Accompagnement</div>
+        <h3>Coaching &amp; Lives<br>Hebdomadaires</h3>
+        <p class="eco-text">Un suivi direct pour ancrer la méthode dans la durée et ne jamais rester seul face à une difficulté technique ou stratégique.</p>
+        <ul class="eco-list">
+          <li><strong>Live de groupe chaque mercredi à 18h00</strong> (minimum 1/semaine).</li>
+          <li><strong>Q&amp;A Stratégique &amp; Technique</strong> : Réponses précises en direct sur les points bloquants de votre formation.</li>
+          <li><strong>Approfondissements sur mesure</strong> : Sujets choisis et explorés en profondeur en fonction de vos suggestions et besoins réels.</li>
+        </ul>
       </div>
     </div>
   </div>
