@@ -178,6 +178,45 @@ footer { background: #fff; padding: 60px 24px 40px; margin-top: 80px; border-top
   .footer-bottom { flex-direction: column; text-align: center; }
   .footer-links { flex-direction: column; gap: 12px; }
 }
+
+/* ─── NEW 3-COLUMN LAYOUT ─── */
+.main-layout { 
+  display: grid; 
+  grid-template-columns: 280px 1fr 280px; 
+  gap: 24px; 
+  align-items: flex-start; 
+  max-width: 1400px; 
+  margin: 40px auto; 
+  padding: 0 24px;
+}
+.side-col { position: sticky; top: 100px; }
+.center-col { min-width: 0; }
+
+/* ─── ACCORDION MODULES ─── */
+.module-header { cursor: pointer; position: relative; transition: background 0.2s; }
+.module-header:hover { background: #fafafa; }
+.module-header::after { 
+  content: '▼'; position: absolute; right: 28px; top: 50%; transform: translateY(-50%); 
+  font-size: 12px; color: var(--muted); transition: transform 0.3s;
+}
+.module.open .module-header::after { transform: translateY(-50%) rotate(180deg); }
+.chapters { display: none; }
+.module.open .chapters { display: block; }
+
+/* ADJUST SIDE CARDS */
+.eco-card { padding: 24px; }
+.eco-card h3 { font-size: 18px; }
+.eco-icon { font-size: 32px; margin-bottom: 12px; }
+.eco-list li { font-size: 11.5px; }
+
+@media (max-width: 1200px) {
+  .main-layout { grid-template-columns: 1fr; max-width: 920px; }
+  .side-col { position: static; }
+  .side-col.right { order: 3; }
+  .center-col { order: 2; }
+  .side-col.left { order: 1; }
+}
+
 </style>
 </head>
 <body>
@@ -197,28 +236,40 @@ footer { background: #fff; padding: 60px 24px 40px; margin-top: 80px; border-top
     </ul>
   </nav>
 
-<div class="page" style="margin-top: 40px;">
-
-  <!-- HEADER -->
-  <div class="header">
-    <div class="header-label">✦ Altitude — Programme complet</div>
-    <h1 class="header-title">14h/semaine récupérées<br>en <span class="hl">30 jours.</span></h1>
-    <p class="header-sub">Pas une formation théorique. Une méthode opérationnelle construite sur ton vrai travail. À la fin, Claude n'est pas un onglet ouvert de temps en temps — c'est un collaborateur que tu sollicites chaque jour.</p>
-    <div class="header-stats">
-      <div class="header-stat"><div class="val">7<span class="o"> modules</span></div><div class="desc">Séquentiels — chacun construit sur le précédent</div></div>
-      <div class="header-stat"><div class="val">40<span class="o"> chapitres</span></div><div class="desc">Actions concrètes sur tes vraies tâches</div></div>
-      <div class="header-stat"><div class="val">1<span class="o"> seul outil</span></div><div class="desc">Claude Desktop + Claude Pro — rien d'autre</div></div>
+<div class="main-layout">
+  
+  <!-- LEFT SIDEBAR: COMMUNITY -->
+  <aside class="side-col left">
+    <div class="eco-card">
+      <span class="eco-icon">👥</span>
+      <div class="eco-label">Pilier Communautaire</div>
+      <h3>La Communauté<br>Privée Altitude</h3>
+      <p class="eco-text">Un réseau d'entrepreneurs qui partagent la même ambition de productivité radicale.</p>
+      <ul class="eco-list">
+        <li><strong>Accès 24h/24 pendant un an</strong> à l'espace membre privé.</li>
+        <li><strong>Échanges quotidiens</strong> entre membres (cas d'usage, réussites).</li>
+        <li><strong>Soutien direct</strong> : Noé répond personnellement à toutes vos questions.</li>
+      </ul>
     </div>
-  </div>
+  </aside>
 
-  <!-- MARRE OVERVIEW -->
-  <div class="marre-grid">
-    <div class="marre-card"><div class="marre-letter" style="color:var(--blue)">M</div><div class="marre-word">Micro Audit</div><div class="marre-desc">Cartographier où ton temps disparaît vraiment</div></div>
-    <div class="marre-card"><div class="marre-letter" style="color:var(--orange)">A</div><div class="marre-word">Analyse</div><div class="marre-desc">Prioriser, planifier, construire ta Roadmap 30 jours</div></div>
-    <div class="marre-card"><div class="marre-letter" style="color:var(--green)">R1</div><div class="marre-word">Réduction</div><div class="marre-desc">Déléguer les premières heures à Claude cette semaine</div></div>
-    <div class="marre-card"><div class="marre-letter" style="color:var(--red)">R2</div><div class="marre-word">Robotisation</div><div class="marre-desc">Brancher Claude sur tes outils — automatisation 100% auto</div></div>
-    <div class="marre-card"><div class="marre-letter" style="color:var(--purple)">E</div><div class="marre-word">Évaluation</div><div class="marre-desc">Mesurer, comparer, ancrer et préparer le cycle 2</div></div>
-  </div>
+  <!-- CENTER: COURSES -->
+  <main class="center-col">
+    <div class="header" style="margin-top:0;">
+      <div class="header-label">✦ Altitude — Programme complet</div>
+      <h1 class="header-title">14h/semaine récupérées<br>en <span class="hl">30 jours.</span></h1>
+      <p class="header-sub">Une méthode opérationnelle construite sur ton vrai travail. À la fin, Claude est ton collaborateur que tu sollicites chaque jour.</p>
+    </div>
+
+    <!-- MARRE OVERVIEW (Horizontal) -->
+    <div class="marre-grid" style="grid-template-columns: repeat(5, 1fr); gap: 8px; font-size: 0.8em;">
+      <div class="marre-card"><div class="marre-letter" style="color:var(--blue); font-size: 24px;">M</div><div class="marre-word">Audit</div></div>
+      <div class="marre-card"><div class="marre-letter" style="color:var(--orange); font-size: 24px;">A</div><div class="marre-word">Analyse</div></div>
+      <div class="marre-card"><div class="marre-letter" style="color:var(--green); font-size: 24px;">R1</div><div class="marre-word">Réduction</div></div>
+      <div class="marre-card"><div class="marre-letter" style="color:var(--red); font-size: 24px;">R2</div><div class="marre-word">Robot</div></div>
+      <div class="marre-card"><div class="marre-letter" style="color:var(--purple); font-size: 24px;">E</div><div class="marre-word">Éval</div></div>
+    </div>
+
 
   <!-- EVOLUTION BANNER -->
   <div class="evolution-banner">
@@ -627,6 +678,7 @@ footer { background: #fff; padding: 60px 24px 40px; margin-top: 80px; border-top
     </div>
   </div>
 
+
   <!-- MODULE E -->
   <div class="module">
     <div class="module-header">
@@ -682,37 +734,25 @@ footer { background: #fff; padding: 60px 24px 40px; margin-top: 80px; border-top
         </div>
       </div>
     </div>
-  <!-- ECOSYSTEM -->
-  <div class="ecosystem">
-    <h2 class="eco-title">L'écosystème Altitude : Bien plus qu'une formation</h2>
-    <div class="eco-grid">
-      <!-- COMMUNITY -->
-      <div class="eco-card">
-        <span class="eco-icon">👥</span>
-        <div class="eco-label">Pilier Communautaire</div>
-        <h3>La Communauté<br>Privée Altitude</h3>
-        <p class="eco-text">Un accès privilégié à un réseau d'entrepreneurs qui partagent la même ambition de productivité radicale.</p>
-        <ul class="eco-list">
-          <li><strong>Accès 24h/24 pendant un an</strong> à l'espace membre privé.</li>
-          <li><strong>Échanges quotidiens</strong> entre membres pour partager cas d'usage, découvertes et réussites.</li>
-          <li><strong>Soutien direct</strong> : Noé répond personnellement à toutes vos questions au quotidien pour débloquer vos situations.</li>
-        </ul>
-      </div>
+  </main>
 
-      <!-- COACHING -->
-      <div class="eco-card coaching">
-        <span class="eco-icon">🎯</span>
-        <div class="eco-label">Pilier Accompagnement</div>
-        <h3>Coaching &amp; Lives<br>Hebdomadaires</h3>
-        <p class="eco-text">Un suivi direct pour ancrer la méthode dans la durée et ne jamais rester seul face à une difficulté technique ou stratégique.</p>
-        <ul class="eco-list">
-          <li><strong>Live de groupe chaque mercredi à 18h00</strong> (minimum 1/semaine).</li>
-          <li><strong>Q&amp;A Stratégique &amp; Technique</strong> : Réponses précises en direct sur les points bloquants de votre formation.</li>
-          <li><strong>Approfondissements sur mesure</strong> : Sujets choisis et explorés en profondeur en fonction de vos suggestions et besoins réels.</li>
-        </ul>
-      </div>
+  <!-- RIGHT SIDEBAR: COACHING -->
+  <aside class="side-col right">
+    <div class="eco-card coaching">
+      <span class="eco-icon">🎯</span>
+      <div class="eco-label">Pilier Accompagnement</div>
+      <h3>Coaching &amp; Lives<br>Hebdomadaires</h3>
+      <p class="eco-text">Un suivi direct pour ne jamais rester seul face à une difficulté.</p>
+      <ul class="eco-list">
+        <li><strong>Live chaque mercredi à 18h00</strong>.</li>
+        <li><strong>Q&amp;A Stratégique &amp; Technique</strong> : Réponses précises en direct.</li>
+        <li><strong>Approfondissements sur mesure</strong> : Sujets choisis selon vos besoins.</li>
+      </ul>
     </div>
-  </div>
+  </aside>
+
+</div> <!-- End main-layout -->
+
 
   <!-- FOOTER -->
   <div class="footer-grid">
@@ -734,8 +774,6 @@ footer { background: #fff; padding: 60px 24px 40px; margin-top: 80px; border-top
     </div>
   </div>
 
-</div>
-
   <footer>
     <div class="footer-inner">
       <div class="footer-legal">
@@ -756,5 +794,25 @@ footer { background: #fff; padding: 60px 24px 40px; margin-top: 80px; border-top
   </footer>
 
   <script src="script.js"></script>
+  <script>
+    /* ─── ACCORDION LOGIC ─── */
+    document.querySelectorAll('.module-header').forEach(header => {
+      header.addEventListener('click', () => {
+        const module = header.parentElement;
+        const isOpen = module.classList.contains('open');
+        
+        // Close all other modules
+        document.querySelectorAll('.module').forEach(m => m.classList.remove('open'));
+        
+        // Toggle current module
+        if (!isOpen) {
+          module.classList.add('open');
+        }
+      });
+    });
+
+    // Open first module by default
+    document.querySelector('.module')?.classList.add('open');
+  </script>
 </body>
 </html>
