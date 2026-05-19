@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ALTITUDE : Accéder au programme</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="apple-touch-icon" href="favicon.png" />
+  <link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- ══════════════════════════════════
+     1. NAVBAR
+  ══════════════════════════════════ -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="logoaltitude.png" alt="ALTITUDE" class="nav-logo-img" />
+    </a>
+
+    <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="programme-altitude.html">Programme</a></li>
+      <li><a href="index.html#faq">FAQ</a></li>
+      <li><a href="https://altitude-business.systeme.io/altitude-ambassadeur" class="btn btn-nav">Accéder au programme</a></li>
+    </ul>
+  </nav>
+
+  <!-- ══════════════════════════════════
+     2. REPLAY HERO
+  ══════════════════════════════════ -->
+  <header class="replay-hero">
+    <div class="replay-badge">Replay Live exclusif</div>
+    <h1>Regarde cette vidéo pour comprendre la méthode</h1>
+    <p class="replay-sub">
+      Découvre en exclusivité le replay de notre dernier live. Une démonstration en direct de comment Claude peut devenir ton bras droit et te faire gagner 14h par semaine.
+    </p>
+  </header>
+
+  <!-- ══════════════════════════════════
+     3. VIDEO CONTAINER
+  ══════════════════════════════════ -->
+  <section class="video-section">
+    <div class="video-container-box">
+      <!-- PLACEHOLDER POUR L'IFRAME VIDÉO (MODIFIABLE FACILEMENT) -->
+      <!-- 
+        Pour intégrer ton iframe vidéo (YouTube, Vimeo, Systeme.io...), 
+        remplace simplement la div '.video-placeholder-wrap' ci-dessous par ton code d'intégration.
+      -->
+      <iframe 
+        src="https://www.youtube-nocookie.com/embed/3qCMeFPzgL4" 
+        title="Replay Altitude" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;">
+      </iframe>
+    </div>
+    
+    <div class="btn-center" style="margin-top: 48px;">
+      <a href="https://altitude-business.systeme.io/altitude-ambassadeur" class="btn cta-main-btn">Je veux récupérer mon temps →</a>
+    </div>
+    <p style="text-align: center; font-size: 13px; color: var(--muted); margin-top: 12px; font-weight: 600;">
+      Accès immédiat au programme après ton inscription.
+    </p>
+  </section>
+
+  <!-- ══════════════════════════════════
+     4. BULLET POINTS - CONTENU DE LA VIDÉO
+  ══════════════════════════════════ -->
+  <section class="replay-info-section" style="border-top: 1px solid var(--light-border);">
+    <div class="info-container">
+      <h2 class="section-title">Ce que tu vas découvrir dans ce <span class="grad-text">replay</span></h2>
+      <p class="section-sub-text">Une plongée concrète dans l'environnement d'automatisation qu'on va bâtir ensemble.</p>
+      
+      <div class="bullets-grid">
+        <div class="bullet-item">
+          <div class="bullet-icon-box">🤖</div>
+          <div class="bullet-content">
+            <h4>Le rôle de Claude vs ChatGPT</h4>
+            <p>Pourquoi Claude est l'outil ultime de raisonnement pour les entrepreneurs et comment il écrit avec une voix 100% humaine.</p>
+          </div>
+        </div>
+        <div class="bullet-item">
+          <div class="bullet-icon-box">⏳</div>
+          <div class="bullet-content">
+            <h4>Le gain de 14h par semaine</h4>
+            <p>La déconstruction scientifique de ton emploi du temps pour cibler exactement ce que tu dois déléguer en priorité.</p>
+          </div>
+        </div>
+        <div class="bullet-item">
+          <div class="bullet-icon-box">📁</div>
+          <div class="bullet-content">
+            <h4>Le dossier BRAIN et les projets</h4>
+            <p>Comment charger tout le contexte de ton business dans Claude pour qu'il te réponde comme un associé senior.</p>
+          </div>
+        </div>
+        <div class="bullet-item">
+          <div class="bullet-icon-box">🚀</div>
+          <div class="bullet-content">
+            <h4>MCP &amp; Connecteurs (Robotisation)</h4>
+            <p>Une démonstration de Claude lisant tes emails Gmail, gérant ton Google Calendar et créant des tâches Notion en arrière-plan.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+     5. MÉTHODE M.A.R.R.E.
+  ══════════════════════════════════ -->
+  <section class="section-off" id="programme">
+    <h2 class="section-title">La méthode <span class="grad-text">M.A.R.R.E.</span></h2>
+    <p class="section-sub-text">Le framework propriétaire qui structure tes 30 jours d'accélération.</p>
+
+    <div class="marre-row">
+      <div class="marre-step">
+        <div class="marre-letter">M</div>
+        <div class="marre-word">Micro audit</div>
+        <div class="marre-desc">Cartographier ton temps tâche par tâche pour voir exactement où il part.</div>
+      </div>
+      <div class="marre-step">
+        <div class="marre-letter">A</div>
+        <div class="marre-word">Analyse</div>
+        <div class="marre-desc">Classer chaque tâche selon son potentiel de délégation à Claude.</div>
+      </div>
+      <div class="marre-step">
+        <div class="marre-letter">R</div>
+        <div class="marre-word">Réduction</div>
+        <div class="marre-desc">Commencer à déléguer concrètement : et mesurer ce que ça libère.</div>
+      </div>
+      <div class="marre-step">
+        <div class="marre-letter">R</div>
+        <div class="marre-word">Robotisation</div>
+        <div class="marre-desc">Construire des systèmes récurrents : Claude comme collaborateur permanent.</div>
+      </div>
+      <div class="marre-step">
+        <div class="marre-letter">E</div>
+        <div class="marre-word">Évaluation</div>
+        <div class="marre-desc">Mesurer, ajuster, ancrer : pour que le changement soit durable.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+     6. COMMENT SE PASSENT TES 30 JOURS
+  ══════════════════════════════════ -->
+  <section class="reassurance-section">
+    <h2 class="section-title">Comment se déroule ton <span class="grad-text">accompagnement</span> ?</h2>
+    <p class="section-sub-text">Une méthode structurée pour des résultats mesurables dès la première semaine.</p>
+
+    <div class="reassurance-grid">
+      <div class="reassurance-card">
+        <span class="step-num">01</span>
+        <h3>Audit &amp; Cartographie</h3>
+        <p>On identifie ensemble tes tâches les plus chronophages et on cible celles qui ont le plus fort potentiel de délégation.</p>
+      </div>
+      <div class="reassurance-card">
+        <span class="step-num">02</span>
+        <h3>Mise en place des Systèmes</h3>
+        <p>Tu crées ton dossier BRAIN, tes instructions personnalisées et tes premiers connecteurs d'automatisation IA.</p>
+      </div>
+      <div class="reassurance-card">
+        <span class="step-num">03</span>
+        <h3>14h de Temps Libéré</h3>
+        <p>Tes tâches récurrentes tournent en arrière-plan. Tu récupères 14h par semaine pour te concentrer sur ton cœur de métier.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+     7. FORMATEUR & TÉMOIGNAGES
+  ══════════════════════════════════ -->
+  <section class="section-white">
+    <div class="trainer-card">
+      <img src="noe.png" alt="Noé Porchier-Cizaire" class="trainer-avatar">
+      <h2>Ton formateur : Noé Porchier-Cizaire</h2>
+      <ul class="trainer-bullets">
+        <li>Fondateur de PRCZ, agence de stratégie IA.</li>
+        <li>A cartographié le temps de dizaines de solopreneurs : 30 à 40% était délégable à l'IA.</li>
+        <li>Premier à avoir utilisé la méthode <strong>M.A.R.R.E.</strong> pour sa propre activité.</li>
+        <li>Génère aujourd'hui des <strong>millions de vues</strong> sur LinkedIn (2M+ impressions).</li>
+      </ul>
+
+      <div class="trainer-social-proof">
+        <img src="linkedin-results.png" alt="Performance LinkedIn : 2 Millions de vues" class="linkedin-slide">
+        <p class="proof-caption">Résultat obtenu en étant seulement <strong>15 minutes par jour</strong> sur LinkedIn grâce à l'IA.</p>
+      </div>
+      <p class="trainer-quote">
+        "Je n'enseigne pas l'IA en théorie. Je te montre exactement comment j'ai configuré mon quotidien pour que l'IA devienne mon principal levier de croissance."
+      </p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+     8. FINAL CTA
+  ══════════════════════════════════ -->
+  <section class="section-cta" id="cta">
+    <h2>Prêt à récupérer 14h par semaine ?</h2>
+    <p class="cta-sub-line">Rejoins Altitude aujourd'hui et transforme ta façon de travailler avec l'IA.</p>
+
+    <div class="cta-btn-wrap" style="margin-top: 32px;">
+      <a href="https://altitude-business.systeme.io/altitude-ambassadeur" class="btn cta-main-btn">
+        Accéder au programme →
+      </a>
+      <span class="cta-reassure">Accès immédiat · Méthode sur 30 jours · Rejoindre la communauté</span>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+     9. FOOTER
+  ══════════════════════════════════ -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-legal">
+        <strong>⚠️ Avertissement légal</strong>
+        La formation Altitude a été conçue à des fins strictement pédagogiques. Les résultats présentés (heures récupérées, gains de temps) sont issus d'expériences réelles mais ne constituent pas une garantie de résultats identiques. Les résultats varient selon le profil, l'investissement personnel et le contexte de chaque participant.
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-logo"><img src="logoaltitude.png" alt="Altitude" class="inline-logo"></div>
+        <ul class="footer-links">
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="programme-altitude.html">Programme</a></li>
+          <li><a href="cgv.html">CGV</a></li>
+          <li><a href="mailto:noe@prcz.fr">Contact</a></li>
+        </ul>
+      </div>
+      <p class="footer-copy">© 2026 PRCZ · Altitude Formation : Tous droits réservés</p>
+    </div>
+  </footer>
+
+  <button id="backToTop" class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+    aria-label="Retour en haut">
+    ↑
+  </button>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

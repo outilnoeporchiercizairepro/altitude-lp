@@ -1,291 +1,58 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ALTITUDE — Programme complet</title>
-<link rel="icon" type="image/png" href="favicon.png" />
-<link rel="apple-touch-icon" href="favicon.png" />
-<link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-:root {
-  --bg: #f0f7fc;
-  --white: #ffffff;
-  --black: #111111;
-  --orange: #e05a2b;
-  --blue: #3b82c4;
-  --blue-light: #dbeeff;
-  --blue-border: #b8d8f0;
-  --orange-light: #fff0e8;
-  --orange-border: #f0c4b8;
-  --green: #1a7a3c;
-  --green-light: #e8f7ee;
-  --purple: #7c3aed;
-  --purple-light: #ede9fe;
-  --red: #dc2626;
-  --red-light: #fef2f2;
-  --muted: #888;
-  --font: 'Montserrat', sans-serif;
-  --font2: 'Inter', sans-serif;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { background: #d4e8f5; font-family: var(--font); min-height: 100vh; padding: 32px 20px 60px; }
-.page { max-width: 920px; margin: 0 auto; }
-
-/* HEADER */
-.header { background: var(--black); border-radius: 20px; padding: 40px 48px; margin-bottom: 24px; position: relative; overflow: hidden; }
-.header::before { content: ''; position: absolute; top: -40px; right: -40px; width: 220px; height: 220px; background: var(--orange); border-radius: 50%; opacity: 0.08; }
-.header-label { font-size: 10px; font-weight: 800; letter-spacing: 4px; text-transform: uppercase; color: var(--orange); margin-bottom: 10px; }
-.header-title { font-size: clamp(32px, 4vw, 48px); font-weight: 900; color: #fff; line-height: 1.05; letter-spacing: -1px; margin-bottom: 10px; }
-.header-title .hl { color: var(--orange); }
-.header-sub { font-family: var(--font2); font-size: 15px; color: #aaa; line-height: 1.6; margin-bottom: 24px; max-width: 560px; }
-.header-stats { display: flex; gap: 32px; flex-wrap: wrap; }
-.header-stat { text-align: left; }
-.header-stat .val { font-size: 28px; font-weight: 900; color: #fff; line-height: 1; }
-.header-stat .val .o { color: var(--orange); }
-.header-stat .desc { font-family: var(--font2); font-size: 11px; color: #777; margin-top: 3px; }
-
-/* MARRE OVERVIEW */
-.marre-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 24px; }
-.marre-card { background: var(--white); border-radius: 14px; padding: 16px 14px; text-align: center; }
-.marre-letter { font-size: 36px; font-weight: 900; line-height: 1; margin-bottom: 4px; }
-.marre-word { font-size: 12px; font-weight: 800; color: var(--black); margin-bottom: 6px; letter-spacing: 0.5px; }
-.marre-desc { font-family: var(--font2); font-size: 10px; color: #666; line-height: 1.5; }
-
-/* MODULE SECTION */
-.module { 
-  background: var(--white); border-radius: 20px; margin-bottom: 20px; 
-  overflow: hidden; border: 1.5px solid #f0f0f0; transition: all 0.3s ease; 
-}
-.module:hover { border-color: var(--blue-border); background: #fafcff; }
-.module.open { border-color: var(--blue-border); box-shadow: 0 10px 30px rgba(59, 130, 196, 0.08); }
-
-.module-header { 
-  padding: 32px 28px; display: flex; align-items: center; gap: 24px; 
-  cursor: pointer; position: relative; transition: background 0.3s;
-}
-.module.open .module-header { border-bottom: 1.5px solid var(--bg); padding-bottom: 24px; }
-
-.module-icon { font-size: 32px; flex-shrink: 0; transition: transform 0.3s ease; }
-.module:hover .module-icon { transform: scale(1.1); }
-.module-meta { flex: 1; padding-right: 40px; }
-.module-tag { font-size: 9px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 6px; }
-.module-title { font-size: clamp(18px, 2.5vw, 22px); font-weight: 900; color: var(--black); line-height: 1.2; margin-bottom: 8px; }
-.module-pitch { font-family: var(--font2); font-size: 13px; color: #555; line-height: 1.6; }
-.module-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
-.pill { font-family: var(--font2); font-size: 10px; font-weight: 600; padding: 3px 10px; border-radius: 20px; }
-.pill.time { background: var(--bg); color: #555; }
-.pill.level { background: var(--blue-light); color: #1a3a5c; }
-.pill.level.inter { background: var(--orange-light); color: #6b2200; }
-.pill.level.adv { background: #fef2f2; color: #7f1d1d; }
-.pill.level.all { background: var(--green-light); color: #1a3a2a; }
-.pill.wip { background: #fef9c3; color: #713f12; }
-
-/* CHAPTERS */
-.chapters { padding: 0 28px 20px; }
-.ch-group-title { font-size: 9px; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; color: var(--muted); margin: 16px 0 10px; }
-.ch-list { display: flex; flex-direction: column; gap: 6px; }
-.ch-item { display: flex; gap: 12px; align-items: flex-start; padding: 10px 14px; background: var(--bg); border-radius: 10px; }
-.ch-num { font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700; color: var(--muted); min-width: 26px; flex-shrink: 0; padding-top: 1px; }
-.ch-body { flex: 1; }
-.ch-title { font-size: 12px; font-weight: 800; color: var(--black); margin-bottom: 3px; }
-.ch-desc { font-family: var(--font2); font-size: 10.5px; color: #666; line-height: 1.55; }
-.ch-tags { display: flex; gap: 6px; margin-top: 5px; flex-wrap: wrap; }
-.ch-tag { font-family: var(--font2); font-size: 9px; font-weight: 600; padding: 2px 7px; border-radius: 4px; background: var(--white); color: #888; border: 1px solid #ddd; }
-.ch-time { font-family: var(--font2); font-size: 9px; color: var(--muted); padding-top: 2px; flex-shrink: 0; }
-.deliverable-row { display: flex; gap: 8px; align-items: flex-start; margin-top: 4px; }
-.deliverable-label { font-family: var(--font2); font-size: 9px; font-weight: 700; color: var(--orange); text-transform: uppercase; letter-spacing: 1px; flex-shrink: 0; padding-top: 1px; }
-.deliverable-text { font-family: var(--font2); font-size: 10px; color: #444; line-height: 1.5; }
-
-/* FOOTER */
-.footer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 24px; }
-.footer-card { background: var(--white); border-radius: 14px; padding: 20px; }
-.footer-card-title { font-size: 12px; font-weight: 800; color: var(--black); margin-bottom: 8px; }
-.footer-card-text { font-family: var(--font2); font-size: 11px; color: #666; line-height: 1.6; }
-.prereq-item { display: flex; gap: 8px; align-items: flex-start; margin-bottom: 6px; font-family: var(--font2); font-size: 11px; color: #555; line-height: 1.5; }
-.prereq-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--orange); flex-shrink: 0; margin-top: 4px; }
-
-/* EVOLUTION BANNER */
-.evolution-banner { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border-radius: 14px; padding: 16px 24px; margin-bottom: 16px; display: flex; align-items: center; gap: 14px; border-left: 4px solid var(--orange); }
-.evolution-banner .evo-icon { font-size: 22px; flex-shrink: 0; }
-.evolution-banner .evo-text { flex: 1; }
-.evolution-banner .evo-title { font-size: 12px; font-weight: 800; color: #fff; margin-bottom: 3px; letter-spacing: 0.3px; }
-.evolution-banner .evo-desc { font-family: var(--font2); font-size: 11px; color: #aaa; line-height: 1.55; }
-.evolution-banner .evo-badge { background: var(--orange); color: #fff; font-size: 9px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; padding: 4px 10px; border-radius: 20px; flex-shrink: 0; }
-
-/* WIP MODULE */
-.module.wip-module { opacity: 0.85; }
-.wip-banner { background: #fef9c3; border: 1.5px solid #fde68a; border-radius: 8px; padding: 8px 14px; font-family: var(--font2); font-size: 11px; color: #713f12; font-weight: 600; margin: 12px 28px 0; }
-
-@media print {
-  body { background: #fff; padding: 16px; }
-  .header { background: var(--black) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .module { break-inside: avoid; }
-}
-
-/* ─── ECOSYSTEM SECTION ─── */
-.ecosystem { margin-top: 48px; margin-bottom: 32px; }
-.eco-title { font-size: clamp(20px, 3vw, 28px); font-weight: 900; color: var(--black); margin-bottom: 24px; text-align: center; }
-.eco-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.eco-card { background: var(--white); border-radius: 20px; padding: 32px; border: 1.5px solid var(--blue-border); position: relative; transition: transform 0.3s ease; }
-.eco-card:hover { transform: translateY(-4px); }
-.eco-card.coaching { border-color: var(--orange-border); }
-.eco-icon { font-size: 36px; margin-bottom: 16px; display: block; }
-.eco-label { font-size: 9px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: var(--blue); margin-bottom: 10px; }
-.eco-card.coaching .eco-label { color: var(--orange); }
-.eco-card h3 { font-size: 20px; font-weight: 900; color: var(--black); margin-bottom: 12px; line-height: 1.2; }
-.eco-text { font-family: var(--font2); font-size: 13px; color: #555; line-height: 1.6; }
-.eco-list { margin-top: 20px; list-style: none; }
-.eco-list li { position: relative; padding-left: 24px; font-family: var(--font2); font-size: 12px; color: #666; margin-bottom: 10px; line-height: 1.5; }
-.eco-list li::before { content: '✦'; position: absolute; left: 0; color: var(--blue); font-weight: 800; }
-.eco-card.coaching .eco-list li::before { color: var(--orange); }
-
-@media (max-width: 768px) {
-  .eco-grid { grid-template-columns: 1fr; }
-}
-
-/* ─── SHARED UI COMPONENTS ─── */
-nav {
-  position: sticky; top: 0; z-index: 1000;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 8px 60px; background: rgba(255,255,255,0.95);
-  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(0,0,0,0.07);
-}
-.nav-logo { display: flex; align-items: center; }
-.nav-logo-img { height: 70px; width: auto; }
-.nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
-.nav-links a { color: #6b6b8a; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; text-decoration: none; transition: color .2s; }
-.nav-links a:hover { color: #111; }
-.btn-nav { 
-  background: linear-gradient(135deg, #4455ff 0%, #9933dd 50%, #cc44ee 100%);
-  color: #fff !important; padding: 12px 28px; border-radius: 100px;
-  font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;
-  box-shadow: 0 4px 14px rgba(100,60,220,0.2);
-}
-.nav-toggle { display: none; flex-direction: column; gap: 5px; width: 36px; height: 36px; cursor: pointer; background: none; border: none; }
-.nav-toggle span { display: block; height: 2px; border-radius: 2px; background: #111; transition: transform .3s, opacity .3s; }
-.nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.nav-toggle.open span:nth-child(2) { opacity: 0; }
-.nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-footer { background: #fff; padding: 60px 24px 40px; margin-top: 80px; border-top: 1px solid #eee; }
-.footer-inner { max-width: 920px; margin: 0 auto; }
-.footer-legal { font-size: 12px; color: #888; line-height: 1.6; margin-bottom: 40px; padding: 24px; background: #f9f9f9; border-radius: 12px; border-left: 3px solid #e05a2b; }
-.footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; padding-top: 30px; border-top: 1px solid #eee; }
-.footer-links { display: flex; gap: 24px; list-style: none; }
-.footer-links a { font-size: 12px; font-weight: 700; color: #666; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; }
-.footer-copy { font-size: 11px; color: #aaa; margin-top: 30px; text-align: center; }
-
-@media (max-width: 920px) {
-  nav { padding: 8px 24px; }
-  .nav-links { 
-    display: none; position: absolute; top: 100%; left: 0; right: 0; 
-    background: #fff; flex-direction: column; padding: 30px; gap: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  }
-  .nav-links.open { display: flex; }
-  .nav-toggle { display: flex; }
-  .footer-bottom { flex-direction: column; text-align: center; }
-  .footer-links { flex-direction: column; gap: 12px; }
-}
-
-/* ─── NEW 3-COLUMN LAYOUT ─── */
-.main-layout { 
-  display: grid; 
-  grid-template-columns: 280px 1fr 280px; 
-  gap: 24px; 
-  align-items: flex-start; 
-  max-width: 1400px; 
-  margin: 40px auto; 
-  padding: 0 24px;
-}
-.side-col { position: sticky; top: 100px; }
-.center-col { min-width: 0; }
-
-/* ─── ACCORDION MODULES ─── */
-.module-header::after { 
-  content: '▼'; position: absolute; right: 28px; top: 50%; transform: translateY(-50%); 
-  font-size: 12px; color: var(--blue); 
-  background: #f0f7ff; width: 36px; height: 36px; 
-  display: flex; align-items: center; justify-content: center; 
-  border-radius: 50%; transition: all 0.3s ease;
-  border: 1px solid var(--blue-border);
-}
-.module:hover .module-header::after { transform: translateY(-50%) scale(1.1); }
-.module.open .module-header::after { 
-  transform: translateY(-50%) rotate(180deg); 
-  background: var(--blue); color: #fff; border-color: var(--blue);
-}
-.chapters { display: none; }
-.module.open .chapters { display: block; }
-
-/* ADJUST SIDE CARDS */
-.eco-card { padding: 24px; }
-.eco-card h3 { font-size: 18px; }
-.eco-icon { font-size: 32px; margin-bottom: 12px; }
-.eco-list li { font-size: 11.5px; }
-
-@media (max-width: 1200px) {
-  .main-layout { grid-template-columns: 1fr; max-width: 920px; }
-  .side-col { position: static; }
-  .side-col.right { order: 3; }
-  .center-col { order: 2; }
-  .side-col.left { order: 1; }
-}
-
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ALTITUDE — Programme complet</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="apple-touch-icon" href="favicon.png" />
+  <link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
   <nav>
-    <a href="index.html" class="nav-logo">
+    <a href="#" class="nav-logo">
       <img src="logoaltitude.png" alt="ALTITUDE" class="nav-logo-img" />
     </a>
+
     <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
-      <span></span><span></span><span></span>
+      <span></span>
+      <span></span>
+      <span></span>
     </button>
+
     <ul class="nav-links">
       <li><a href="index.html">Accueil</a></li>
       <li><a href="programme-altitude.html">Programme</a></li>
-      <li><a href="index.html#faq">FAQ</a></li>
-      <li><a href="https://altitude-business.systeme.io/altitude-ambassadeur" class="btn-nav">Rejoindre</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="https://altitude-business.systeme.io/altitude-ambassadeur" class="btn btn-nav">Accéder au programme</a></li>
     </ul>
   </nav>
 
-<div class="main-layout">
+<div class="prog-container">
   
-  <!-- LEFT SIDEBAR: COMMUNITY -->
-  <aside class="side-col left">
-    <div class="eco-card">
-      <span class="eco-icon">👥</span>
-      <div class="eco-label">Pilier Communautaire</div>
-      <h3>La Communauté<br>Privée Altitude</h3>
-      <p class="eco-text">Un réseau d'entrepreneurs qui partagent la même ambition de productivité radicale.</p>
-      <ul class="eco-list">
-        <li><strong>Accès 24h/24 pendant un an</strong> à l'espace membre privé.</li>
-        <li><strong>Échanges quotidiens</strong> entre membres (cas d'usage, réussites).</li>
-        <li><strong>Soutien direct</strong> : Noé répond personnellement à toutes vos questions.</li>
-      </ul>
-    </div>
-  </aside>
+
 
   <!-- CENTER: COURSES -->
-  <main class="center-col">
-    <div class="header" style="margin-top:0;">
-      <div class="header-label">✦ Altitude — Programme complet</div>
-      <h1 class="header-title">14h/semaine récupérées<br>en <span class="hl">30 jours.</span></h1>
-      <p class="header-sub">Une méthode opérationnelle construite sur ton vrai travail. À la fin, Claude est ton collaborateur que tu sollicites chaque jour.</p>
+  <div class="prog-main">
+    <div class="prog-header" style="margin-top:0;">
+      <div class="prog-header-label">✦ Altitude — Programme complet</div>
+      <h1 class="prog-title">14h/semaine récupérées<br>en <span class="hl">30 jours.</span></h1>
+      <p class="prog-sub">Une méthode opérationnelle construite sur ton vrai travail. À la fin, Claude est ton collaborateur que tu sollicites chaque jour.</p>
+      <div style="margin-top: 24px; text-align: center;">
+        <a href="https://altitude-business.systeme.io/altitude-ambassadeur" class="btn" style="display: inline-block;">Je veux récupérer mon temps →</a>
+      </div>
+
     </div>
 
     <!-- MARRE OVERVIEW (Horizontal) -->
-    <div class="marre-grid" style="grid-template-columns: repeat(5, 1fr); gap: 8px; font-size: 0.8em;">
-      <div class="marre-card"><div class="marre-letter" style="color:var(--blue); font-size: 24px;">M</div><div class="marre-word">Audit</div></div>
-      <div class="marre-card"><div class="marre-letter" style="color:var(--orange); font-size: 24px;">A</div><div class="marre-word">Analyse</div></div>
-      <div class="marre-card"><div class="marre-letter" style="color:var(--green); font-size: 24px;">R1</div><div class="marre-word">Réduction</div></div>
-      <div class="marre-card"><div class="marre-letter" style="color:var(--red); font-size: 24px;">R2</div><div class="marre-word">Robot</div></div>
-      <div class="marre-card"><div class="marre-letter" style="color:var(--purple); font-size: 24px;">E</div><div class="marre-word">Éval</div></div>
+    <div class="marre-grid">
+      <div class="marre-card"><div class="marre-letter" style="color: var(--blue);">M</div><div class="marre-word">Audit</div></div>
+      <div class="marre-card"><div class="marre-letter" style="color: #e05a2b;">A</div><div class="marre-word">Analyse</div></div>
+      <div class="marre-card"><div class="marre-letter" style="color: #1a7a3c;">R1</div><div class="marre-word">Réduction</div></div>
+      <div class="marre-card"><div class="marre-letter" style="color: #dc2626;">R2</div><div class="marre-word">Robot</div></div>
+      <div class="marre-card"><div class="marre-letter" style="color: var(--purple);">E</div><div class="marre-word">Éval</div></div>
     </div>
 
 
@@ -304,7 +71,7 @@ footer { background: #fff; padding: 60px 24px 40px; margin-top: 80px; border-top
     <div class="module-header">
       <div class="module-icon">🟢</div>
       <div class="module-meta">
-        <div class="module-tag" style="color:var(--green)">Module 0 — Fondations</div>
+        <div class="module-tag" >Module 0 — Fondations</div>
         <div class="module-title">Comprends ce que tu as entre les mains</div>
         <div class="module-pitch">Le point de départ. Tu installes Claude Desktop, tu comprends comment lui parler naturellement, et tu poses les fondations de ton espace de travail. À la fin : tu as eu ta première vraie conversation avec un résultat concret.</div>
         <div class="module-pills">
@@ -357,7 +124,7 @@ footer { background: #fff; padding: 60px 24px 40px; margin-top: 80px; border-top
     <div class="module-header">
       <div class="module-icon">🔍</div>
       <div class="module-meta">
-        <div class="module-tag" style="color:var(--blue)">Module M — Micro Audit</div>
+        <div class="module-tag" >Module M — Micro Audit</div>
         <div class="module-title">Le vrai coût de travailler seul</div>
         <div class="module-pitch">Tu ne remplis pas un formulaire — tu converses. Claude joue le rôle d'un journaliste et t'interviewe sur ta semaine. En 15 minutes, tu as un tableau complet de tes tâches classées D/P/H et tu sais exactement combien d'heures tu peux récupérer.</div>
         <div class="module-pills">
@@ -396,7 +163,7 @@ footer { background: #fff; padding: 60px 24px 40px; margin-top: 80px; border-top
     <div class="module-header">
       <div class="module-icon">📊</div>
       <div class="module-meta">
-        <div class="module-tag" style="color:var(--orange)">Module A — Analyse & Stratégie</div>
+        <div class="module-tag" >Module A — Analyse & Stratégie</div>
         <div class="module-title">De l'audit à la cartographie</div>
         <div class="module-pitch">Claude analyse ton audit comme un stratège externe. Il sélectionne les tâches à fort ROI, assigne à chacune la solution Claude la plus adaptée, génère ta Roadmap personnalisée sur 30 jours, et produit une Cartographie globale en PDF que tu sauvegardes dans ton Projet. À partir de là, Claude connaît ton plan avant chaque conversation.</div>
         <div class="module-pills">
@@ -444,7 +211,7 @@ footer { background: #fff; padding: 60px 24px 40px; margin-top: 80px; border-top
     <div class="module-header">
       <div class="module-icon">⚡</div>
       <div class="module-meta">
-        <div class="module-tag" style="color:var(--green)">Module R1 — Réduction</div>
+        <div class="module-tag" >Module R1 — Réduction</div>
         <div class="module-title">Tes premières heures récupérées. Cette semaine.</div>
         <div class="module-pitch">Tu délègues les premières heures cette semaine. Tu apprends la méthode SID pour obtenir le bon résultat du premier coup, tu construis le dossier BRAIN qui donne ta voix à Claude, et tu configures tes premiers Skills — des procédures sauvegardées que Claude exécute d'un seul mot.</div>
         <div class="module-pills">
@@ -548,12 +315,16 @@ footer { background: #fff; padding: 60px 24px 40px; margin-top: 80px; border-top
     </div>
   </div>
 
+  <div style="text-align: center; margin: 40px 0;">
+    <a href="https://altitude-business.systeme.io/altitude-ambassadeur" class="btn">Récupérer 14h par semaine dès ce mois-ci →</a>
+  </div>
+
   <!-- MODULE R2 -->
   <div class="module">
     <div class="module-header">
       <div class="module-icon">🤖</div>
       <div class="module-meta">
-        <div class="module-tag" style="color:var(--red)">Module R2 — Robotisation</div>
+        <div class="module-tag" >Module R2 — Robotisation</div>
         <div class="module-title">Ton système tourne sans toi. 100% automatique.</div>
         <div class="module-pitch">Tu configures Cowork pour que les tâches récurrentes s'exécutent 100% automatiquement — sans toi, à heure fixe. Tu connectes Claude à tes outils via les connecteurs MCP. Les tâches planifiées tournent en autonomie complète. Claude Browser agit sur le web à ta place. Tu sors du module avec un système de délégation qui fonctionne même quand tu dors.</div>
         <div class="module-pills">
@@ -702,7 +473,7 @@ footer { background: #fff; padding: 60px 24px 40px; margin-top: 80px; border-top
     <div class="module-header">
       <div class="module-icon">📈</div>
       <div class="module-meta">
-        <div class="module-tag" style="color:var(--purple)">Module E — Évaluation</div>
+        <div class="module-tag" >Module E — Évaluation</div>
         <div class="module-title">Mesure ce que tu as récupéré. Prépare le cycle 2.</div>
         <div class="module-pitch">Tu mesures. Tu compares ton audit initial avec la réalité à J+30. Tu calcules ton ROI en heures et en valeur. Tu identifies les prochains chantiers, tu mets à jour ton dossier BRAIN, et tu prépares le deuxième cycle M.A.R.R.E. La méthode continue après la formation.</div>
         <div class="module-pills">
@@ -752,54 +523,67 @@ footer { background: #fff; padding: 60px 24px 40px; margin-top: 80px; border-top
         </div>
       </div>
     </div>
-  </main>
+  </div>
+  </div> <!-- End prog-main -->
+</div> <!-- End prog-container -->
 
-  <!-- RIGHT SIDEBAR: COACHING -->
-  <aside class="side-col right">
-    <div class="eco-card coaching">
-      <span class="eco-icon">🎯</span>
-      <div class="eco-label">Pilier Accompagnement</div>
-      <h3>Coaching &amp; Lives<br>Hebdomadaires</h3>
-      <p class="eco-text">Un suivi direct pour ne jamais rester seul face à une difficulté.</p>
-      <ul class="eco-list">
-        <li><strong>Live chaque mercredi à 18h00</strong>.</li>
-        <li><strong>Q&amp;A Stratégique &amp; Technique</strong> : Réponses précises en direct.</li>
-        <li><strong>Approfondissements sur mesure</strong> : Sujets choisis selon vos besoins.</li>
-      </ul>
-    </div>
-  </aside>
-
-</div> <!-- End main-layout -->
 
 
   <!-- FOOTER -->
-  <div class="footer-grid">
-    <div class="footer-card">
-      <div class="footer-card-title">📋 Les 3 règles du jeu</div>
-      <div class="prereq-item"><div class="prereq-dot"></div><div><strong>Tes vraies tâches, pas des exercices fictifs.</strong> Chaque module s'applique sur ton travail de la semaine. C'est ça qui crée le résultat.</div></div>
-      <div class="prereq-item"><div class="prereq-dot"></div><div><strong>Dans l'ordre, sans sauter d'étape.</strong> Chaque module construit sur le précédent. Automatiser sans audit, ça ne marche pas.</div></div>
-      <div class="prereq-item"><div class="prereq-dot"></div><div><strong>Valider avant de passer.</strong> Chaque module a une action de fin. Tu la fais — tu passes. C'est ce qui transforme une formation en changement durable.</div></div>
-    </div>
-    <div class="footer-card">
-      <div class="footer-card-title">⚙️ Ce qu'il te faut</div>
-      <div class="prereq-item"><div class="prereq-dot"></div><div><strong>Claude Desktop</strong> — l'app native, pas le navigateur web. Obligatoire pour les Projets, la mémoire et Cowork.</div></div>
-      <div class="prereq-item"><div class="prereq-dot"></div><div><strong>Claude Pro</strong> — 20$/mois. Débloque les Projets, l'usage intensif et l'accès aux connecteurs.</div></div>
-      <div class="prereq-item"><div class="prereq-dot"></div><div><strong>Aucune compétence technique.</strong> La méthode est conçue pour des professionnels — pas des développeurs.</div></div>
-    </div>
-    <div class="footer-card">
-      <div class="footer-card-title">🎯 Ce que tu auras à la fin</div>
-      <div class="footer-card-text">Un collaborateur IA configuré sur ton profil, tes outils et tes tâches. Une Cartographie Globale qui grandit avec toi. Des systèmes qui tournent sans toi à heure fixe. Une méthode que tu peux continuer à appliquer seul — cycle après cycle — bien après la formation.</div>
-    </div>
-  </div>
 
-  <footer>
+  <!-- ══════════════════════════════════
+     ÉCOSYSTÈME (Piliers)
+══════════════════════════════════ -->
+  <section class="section-off eco-section">
+    <div class="eco-grid">
+      <!-- COMMUNAUTÉ -->
+      <div class="eco-card">
+        <span class="eco-icon">👥</span>
+        <div class="eco-label">Pilier Communautaire</div>
+        <h3>La Communauté<br>Privée Altitude</h3>
+        <p style="color: var(--muted); font-size: 13.5px; margin-bottom: 20px;">Un réseau d'entrepreneurs qui partagent la même ambition de productivité radicale.</p>
+        <ul class="eco-list">
+          <li><strong>Accès 24h/24 pendant un an</strong> à l'espace membre privé.</li>
+          <li><strong>Échanges quotidiens</strong> entre membres (cas d'usage, réussites).</li>
+          <li><strong>Soutien direct</strong> : Noé répond personnellement à toutes vos questions.</li>
+        </ul>
+      </div>
+      <!-- COACHING -->
+      <div class="eco-card coaching">
+        <span class="eco-icon">🎯</span>
+        <div class="eco-label">Pilier Accompagnement</div>
+        <h3>Coaching &amp; Lives<br>Hebdomadaires</h3>
+        <p style="color: var(--muted); font-size: 13.5px; margin-bottom: 20px;">Un suivi direct pour ne jamais rester seul face à une difficulté.</p>
+        <ul class="eco-list">
+          <li><strong>Live chaque mercredi à 18h00</strong>.</li>
+          <li><strong>Q&amp;A Stratégique &amp; Technique</strong> : Réponses précises en direct.</li>
+          <li><strong>Approfondissements sur mesure</strong> : Sujets choisis selon vos besoins.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="big-cta-section">
+    <div class="big-cta-box">
+      <h2>Prêt à récupérer 14h par semaine ?</h2>
+      <p>Ne laissez pas les tâches répétitives engloutir votre temps. Rejoignez Altitude et transformez votre façon de travailler dès aujourd'hui.</p>
+      <a href="https://altitude-business.systeme.io/altitude-ambassadeur" class="btn">Récupère 14h par semaine dès ce mois-ci →</a>
+      <p style="font-size: 0.85rem; color: var(--muted); margin-top: 16px; margin-bottom: 0; max-width: none;">Accès immédiat · Méthode sur 30 jours</p>
+    </div>
+  </section>
+
+<footer>
     <div class="footer-inner">
       <div class="footer-legal">
         <strong>⚠️ Avertissement légal</strong>
-        La formation Altitude a été conçue à des fins strictement pédagogiques. Les résultats présentés sont issus d'expériences réelles mais ne constituent pas une garantie de résultats identiques.
+        La formation Altitude a été conçue à des fins strictement
+        pédagogiques. Les résultats présentés (heures récupérées, gains de temps) sont issus d'expériences réelles mais
+        ne constituent pas une garantie de résultats identiques. Les résultats varient selon le profil, l'investissement
+        personnel et le contexte de chaque participant.
       </div>
       <div class="footer-bottom">
-        <div class="footer-logo"><img src="logoaltitude.png" alt="Altitude" style="height:40px;"></div>
+        <div class="footer-logo"><img src="logoaltitude.png" alt="Altitude" class="inline-logo"></div>
         <ul class="footer-links">
           <li><a href="index.html">Accueil</a></li>
           <li><a href="programme-altitude.html">Programme</a></li>
@@ -807,7 +591,8 @@ footer { background: #fff; padding: 60px 24px 40px; margin-top: 80px; border-top
           <li><a href="mailto:noe@prcz.fr">Contact</a></li>
         </ul>
       </div>
-      <p class="footer-copy">© 2026 PRCZ · Altitude Formation · Tous droits réservés</p>
+      <p class="footer-copy">© 2026 PRCZ · Altitude Formation :
+        Tous droits réservés</p>
     </div>
   </footer>
 
@@ -825,6 +610,9 @@ footer { background: #fff; padding: 60px 24px 40px; margin-top: 80px; border-top
         // Toggle current module
         if (!isOpen) {
           module.classList.add('open');
+          setTimeout(() => {
+            module.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 150);
         }
       });
     });
