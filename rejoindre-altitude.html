@@ -8,7 +8,7 @@
   <link rel="icon" type="image/png" href="favicon.png" />
   <link rel="apple-touch-icon" href="favicon.png" />
   <link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=1.1" />
 </head>
 
 <body>
@@ -49,13 +49,8 @@
   <!-- ══════════════════════════════════
      3. VIDEO CONTAINER
   ══════════════════════════════════ -->
-  <section class="video-section">
-    <div class="video-container-box">
-      <!-- PLACEHOLDER POUR L'IFRAME VIDÉO (MODIFIABLE FACILEMENT) -->
-      <!-- 
-        Pour intégrer ton iframe vidéo (YouTube, Vimeo, Systeme.io...), 
-        remplace simplement la div '.video-placeholder-wrap' ci-dessous par ton code d'intégration.
-      -->
+  <section class="video-section" style="max-width: 800px; margin: 0 auto; padding: 0 24px 60px;">
+    <div class="video-container-box" style="position: relative; aspect-ratio: 16/9; border-radius: 20px; overflow: hidden; border: 1px solid var(--light-border); box-shadow: var(--shadow-md); background: var(--white);">
       <iframe 
         src="https://www.youtube-nocookie.com/embed/3qCMeFPzgL4" 
         title="Replay Altitude" 
