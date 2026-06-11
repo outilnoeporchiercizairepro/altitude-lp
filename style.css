@@ -1448,6 +1448,19 @@ footer {
   margin-bottom: 6px;
 }
 
+.module-value {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--purple);
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  border-radius: 6px;
+  padding: 3px 10px;
+  margin-bottom: 10px;
+  letter-spacing: 0.3px;
+}
+
 .module-title {
   font-size: 18px;
   font-weight: 800;
