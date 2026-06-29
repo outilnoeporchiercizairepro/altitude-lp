@@ -1725,6 +1725,92 @@ footer {
   font-size: 14px;
 }
 
+.eco-highlight {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 22px;
+  padding: 16px 18px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(68,85,255,0.07) 0%, rgba(204,68,238,0.07) 100%);
+  border: 1px solid rgba(153,51,221,0.18);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.eco-highlight-icon {
+  font-size: 22px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.eco-highlight strong {
+  color: var(--purple);
+}
+
+/* PREUVES — Communauté en action */
+.proof-section {
+  padding: 56px 24px 20px;
+  background: var(--off);
+}
+
+.proof-header {
+  max-width: 800px;
+  margin: 0 auto 32px;
+  text-align: center;
+}
+
+.proof-header h2 {
+  font-size: 28px;
+  font-weight: 900;
+  margin: 6px 0 10px;
+  line-height: 1.2;
+}
+
+.proof-header p {
+  font-size: 14px;
+  color: var(--muted);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.proof-grid {
+  max-width: 820px;
+  margin: 0 auto;
+  column-count: 2;
+  column-gap: 20px;
+}
+
+.proof-item {
+  break-inside: avoid;
+  margin: 0 0 20px;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--light-border);
+  background: #1f1f1f;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.proof-item:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.proof-item img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 700px) {
+  .proof-grid {
+    column-count: 1;
+  }
+}
+
 /* BIG CTA SECTION */
 .total-value-section {
   padding: 40px 24px;
