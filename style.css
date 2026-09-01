@@ -2414,11 +2414,15 @@ footer {
 @media (max-width: 768px) {
   .wa-float {
     bottom: 18px;
-    right: 14px;
-    padding: 10px 16px 10px 12px;
-    font-size: 12.5px;
-    gap: 8px;
-    max-width: calc(100vw - 96px);
+    right: 16px;
+    width: 56px;
+    height: 56px;
+    padding: 0;
+    gap: 0;
+    justify-content: center;
+    border-radius: 50%;
   }
-  .wa-float svg { width: 24px; height: 24px; }
+  .wa-float span { display: none; }
+  .wa-float::before { border-radius: 50%; }
+  .wa-float svg { width: 30px; height: 30px; }
 }
